@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
 import LoginForm from '~components/LoginForm';
-import { authenticateLogin } from '~store/authentication/actions';
+import { authenticateFromInput } from '~store/authentication/actions';
 
-const mapStateToProps = state => ({ state });
-const mapDispatchToProps = { authenticateLogin };
+const mapStateToProps = state => ({ isAuthenticated: state.authentication.isAuthenticated });
+const mapDispatchToProps = { authenticateFromInput };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

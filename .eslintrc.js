@@ -15,7 +15,11 @@ module.exports = {
       "react/react-in-jsx-scope": "off",
       "react/jsx-filename-extension": "off",
       "no-param-reassign": "off",
-      "jsx-a11y/anchor-is-valid": "off"
+      "jsx-a11y/anchor-is-valid": "off",
+      "import/prefer-default-export": "off"
+  },
+  "globals": {
+    "window": true
   },
   "extends": ["airbnb"]
 }

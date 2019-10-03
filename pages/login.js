@@ -1,10 +1,10 @@
+import LoginForm from '~components/LoginForm/Container';
 import AuthenticationWrapper from '~components/AuthenticationWrapper/Container';
-import ProjectList from '~components/ProjectList/Container';
 
-const Index = () => (
+const Login = () => (
   <AuthenticationWrapper>
-    <ProjectList />
+    <LoginForm />
   </AuthenticationWrapper>
 );
 
-export default Index;
+export default Login;
