@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const LoginForm = ({ authenticateLogin }) => {
+const LoginForm = ({ authenticateFromInput, isAuthenticated }) => {
+  if (isAuthenticated) {
+    window.location.href = '/';
+  }
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const submitLogIn = (e) => {
     e.preventDefault();
-    console.log(e);
-    authenticateLogin(email, password);
+    authenticateFromInput(email, password);
   };
 
   return (
@@ -23,7 +26,8 @@ const LoginForm = ({ authenticateLogin }) => {
 };
 
 LoginForm.propTypes = {
-  authenticateLogin: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  authenticateFromInput: PropTypes.func.isRequired,
 };
 
 export default LoginForm;
