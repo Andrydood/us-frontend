@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const LoginForm = ({ authenticateFromInput, isAuthenticated }) => {
+import { authenticateFromInput } from '~lib/authentication';
+
+const LoginForm = ({ isAuthenticated }) => {
   if (isAuthenticated) {
     window.location.href = '/';
   }
@@ -27,7 +29,6 @@ const LoginForm = ({ authenticateFromInput, isAuthenticated }) => {
 
 LoginForm.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
-  authenticateFromInput: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

@@ -5,10 +5,15 @@ import {
   compose,
 } from 'redux';
 import thunk from 'redux-thunk';
-import authentication from '~store/authentication/reducer';
-import projectList from '~store/projectList/reducer';
 
-const reducers = combineReducers({ authentication, projectList });
+import authentication from '~store/authentication/reducer';
+import browsePage from '~store/browsePage/reducer';
+import favoritesPage from '~store/favoritesPage/reducer';
+import profilePage from '~store/profilePage/reducer';
+
+const reducers = combineReducers({
+  authentication, browsePage, favoritesPage, profilePage,
+});
 const makeStore = initialState => createStore(
   reducers,
   initialState,

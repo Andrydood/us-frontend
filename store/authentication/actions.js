@@ -5,9 +5,7 @@ import {
   LOGOUT_SUCCESS,
 } from '~store/authentication/actionTypes';
 
-import request from '~lib/request';
-
-const TOKEN_KEY = 'token';
+import { TOKEN_KEY } from '~lib/authentication';
 
 export const authenticateFromToken = () => (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
@@ -15,7 +13,10 @@ export const authenticateFromToken = () => (dispatch) => {
   if (window) {
     const token = window.localStorage.getItem(TOKEN_KEY);
     if (token) {
-      return dispatch({ type: LOGIN_SUCCESS, payload: { token } });
+      // TODO: WHY!?
+      const { id, email } = JSON.parse(atob(token.split('.')[1]));
+      const userId = btoa(id).toString().replace(/={1,2}$/, '');
+      return dispatch({ type: LOGIN_SUCCESS, payload: { token, userId, email } });
     }
     if (window.location.pathname !== '/login') {
       window.location.href = '/login';
@@ -25,23 +26,8 @@ export const authenticateFromToken = () => (dispatch) => {
   return dispatch({ type: LOGIN_FAILURE });
 };
 
-export const authenticateFromInput = (email, password) => (dispatch) => {
-  dispatch({ type: LOGIN_REQUEST });
-
-  request.login(email, password)
-    .then(({ token }) => {
-      if (window) {
-        window.localStorage.setItem(TOKEN_KEY, token);
-        window.location.href = '/';
-        return dispatch({ type: LOGIN_SUCCESS, payload: { token } });
-      }
-      return Error('Window object missing');
-    })
-    .catch(() => {
-      dispatch({ type: LOGIN_FAILURE });
-    });
-};
-
 export const logOut = () => (dispatch) => {
+  window.localStorage.removeItem(TOKEN_KEY);
   dispatch({ type: LOGOUT_SUCCESS });
+  window.location.href = '/login';
 };
