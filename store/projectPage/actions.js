@@ -1,15 +1,15 @@
 import _ from 'lodash';
-import { SET_BROWSE_LIST } from '~store/browsePage/actionTypes';
+import { SET_PROJECT_DATA } from '~store/projectPage/actionTypes';
 import { logOut } from '~store/authentication/actions';
 import request from '~lib/request';
 
-export const getBrowseProjects = () => (dispatch, getState) => {
+export const getProjectData = projectId => (dispatch, getState) => {
   const state = getState();
   const { isAuthenticated, token } = _.get(state, 'authentication');
 
-  if (isAuthenticated && token) {
-    request.browse(token).then((projects) => {
-      dispatch({ type: SET_BROWSE_LIST, payload: { projects } });
+  if (isAuthenticated && token && projectId) {
+    request.project(projectId, token).then((project) => {
+      dispatch({ type: SET_PROJECT_DATA, payload: { name: project.name, projectId } });
     }).catch((err) => {
       console.log('Error: ', err);
       dispatch(logOut());

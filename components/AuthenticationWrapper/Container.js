@@ -6,6 +6,6 @@ import { authenticateFromToken } from '~store/authentication/actions';
 const mapStateToProps = state => ({
   isAuthenticated: state.authentication.isAuthenticated,
 });
-const mapDispatchToProps = { authenticateFromToken };
+const mapDispatchToProps = { authenticationFunction: authenticateFromToken };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthenticationWrapper);

@@ -4,6 +4,6 @@ import AuthenticationWrapper from '~components/AuthenticationWrapper/Container';
 import { getFavoriteProjects } from '~store/favoritesPage/actions';
 
 const mapStateToProps = () => ({});
-const mapDispatchToProps = { getData: getFavoriteProjects };
+const mapDispatchToProps = { afterAuthentication: getFavoriteProjects };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthenticationWrapper);

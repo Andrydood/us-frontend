@@ -1,13 +1,13 @@
 import { createReducer } from '~lib/redux';
 
-import { FILL_PROFILE_PAGE } from '~store/profilePage/actionTypes';
+import { SET_PROFILE_DATA } from '~store/profilePage/actionTypes';
 
 const initialState = {
   projects: [],
 };
 
 const reducer = createReducer(initialState, {
-  [FILL_PROFILE_PAGE]: (state, { payload }) => ({
+  [SET_PROFILE_DATA]: (state, { payload }) => ({
     ...state,
     projects: payload.projects,
   }),
