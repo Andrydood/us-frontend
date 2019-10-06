@@ -2,14 +2,19 @@ import { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 const AuthenticationWrapper = ({
-  authenticateFromToken,
+  authenticationFunction,
   isAuthenticated,
-  getData,
+  afterAuthentication,
   children,
 }) => {
-  useEffect(() => { authenticateFromToken(); }, []);
-  useEffect(() => { getData(); }, [isAuthenticated]);
-
+  useEffect(() => {
+    authenticationFunction();
+  }, []);
+  useEffect(() => {
+    if (isAuthenticated) {
+      afterAuthentication();
+    }
+  }, [isAuthenticated]);
   return (
     <Fragment>
       { children }
@@ -18,9 +23,9 @@ const AuthenticationWrapper = ({
 };
 
 AuthenticationWrapper.propTypes = {
-  authenticateFromToken: PropTypes.func.isRequired,
+  authenticationFunction: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  getData: PropTypes.func,
+  afterAuthentication: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -29,7 +34,7 @@ AuthenticationWrapper.propTypes = {
 
 
 AuthenticationWrapper.defaultProps = {
-  getData: () => {},
+  afterAuthentication: () => {},
 };
 
 export default AuthenticationWrapper;

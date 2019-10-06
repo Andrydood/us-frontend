@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
-
 const Header = ({ onClickLogout }) => (
   <div>
     <Link href="/"><a>Home</a></Link>

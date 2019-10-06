@@ -1,11 +1,12 @@
 import AuthenticationWrapper from '~components/AuthenticationWrapper/BrowsePageContainer';
+import NavigationWrapper from '~components/NavigationWrapper';
 import ProjectList from '~components/ProjectList/BrowsePageContainer';
-import Header from '~components/Header/Container';
 
 const Browse = () => (
   <AuthenticationWrapper>
-    <Header />
-    <ProjectList />
+    <NavigationWrapper>
+      <ProjectList />
+    </NavigationWrapper>
   </AuthenticationWrapper>
 );
 

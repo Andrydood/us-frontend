@@ -1,1 +1,1 @@
-export const FILL_PROFILE_PAGE = 'FILL_PROFILE_PAGE';
+export const SET_PROFILE_DATA = 'SET_PROFILE_DATA';

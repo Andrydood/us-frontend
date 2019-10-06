@@ -1,1 +1,1 @@
-export const FILL_BROWSE_LIST = 'FILL_BROWSE_LIST';
+export const SET_BROWSE_LIST = 'SET_BROWSE_LIST';
