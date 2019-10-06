@@ -1,10 +1,12 @@
-import AuthenticationWrapper from '~components/AuthenticationWrapper/Container';
-import ProjectList from '~components/ProjectList/Container';
+import AuthenticationWrapper from '~components/AuthenticationWrapper/BrowsePageContainer';
+import ProjectList from '~components/ProjectList/BrowsePageContainer';
+import Header from '~components/Header/Container';
 
-const Index = () => (
+const Browse = () => (
   <AuthenticationWrapper>
+    <Header />
     <ProjectList />
   </AuthenticationWrapper>
 );
 
-export default Index;
+export default Browse;

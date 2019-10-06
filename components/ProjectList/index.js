@@ -1,22 +1,16 @@
 import PropTypes from 'prop-types';
+import ProjectCard from '~components/ProjectCard';
 
-const ProjectList = ({ getProjectList, projects, isAuthenticated }) => {
-  if (isAuthenticated && projects.length === 0) {
-    getProjectList();
-  }
-
-  return (
-    <div>
-      <h1>{JSON.stringify(projects)}</h1>
-    </div>
-  );
-};
+const ProjectList = ({ projects }) => (
+  <div>
+    { projects
+      ? projects.map(project => <ProjectCard name={project.name} key={project.id} />)
+      : null }
+  </div>
+);
 
 ProjectList.propTypes = {
-  getProjectList: PropTypes.func.isRequired,
   projects: PropTypes.array.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-
 };
 
 export default ProjectList;

@@ -19,7 +19,9 @@ module.exports = {
       "import/prefer-default-export": "off"
   },
   "globals": {
-    "window": true
+    "window": true,
+    "atob": true,
+    "btoa": true,
   },
   "extends": ["airbnb"]
 }

@@ -1,13 +1,13 @@
 import { createReducer } from '~lib/redux';
 
-import { FILL_LIST } from '~store/projectList/actionTypes';
+import { FILL_BROWSE_LIST } from '~store/browsePage/actionTypes';
 
 const initialState = {
   projects: [],
 };
 
 const reducer = createReducer(initialState, {
-  [FILL_LIST]: (state, { payload }) => ({
+  [FILL_BROWSE_LIST]: (state, { payload }) => ({
     ...state,
     projects: payload.projects,
   }),
