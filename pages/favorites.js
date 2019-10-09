@@ -1,12 +1,15 @@
-import AuthenticationWrapper from '~components/AuthenticationWrapper/FavoritesPageContainer';
+import AuthenticationWrapper from '~components/AuthenticationWrapper/Container';
+import DataWrapper from '~components/DataWrapper/FavoritesPageContainer';
 import NavigationWrapper from '~components/NavigationWrapper';
 import ProjectList from '~components/ProjectList/FavoritesPageContainer';
 
 const Favorites = () => (
   <AuthenticationWrapper>
-    <NavigationWrapper>
-      <ProjectList />
-    </NavigationWrapper>
+    <DataWrapper needsAuthentication>
+      <NavigationWrapper>
+        <ProjectList />
+      </NavigationWrapper>
+    </DataWrapper>
   </AuthenticationWrapper>
 );
 
