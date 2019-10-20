@@ -9,8 +9,7 @@ export const getFavoriteProjects = () => (dispatch, getState) => {
 
   if (isAuthenticated && token) {
     request.favorites(token).then((projects) => {
-      // TODO: WHY THE FUCK IS THIS A STRING
-      dispatch({ type: SET_FAVORITES_LIST, payload: { projects: JSON.parse(projects) } });
+      dispatch({ type: SET_FAVORITES_LIST, payload: { projects } });
     }).catch((err) => {
       console.log('Error: ', err);
       dispatch(logOut());

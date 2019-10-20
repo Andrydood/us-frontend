@@ -5,11 +5,11 @@ import request from '~lib/request';
 
 export const getProfileData = () => (dispatch, getState) => {
   const state = getState();
-  const { isAuthenticated, token, userId } = _.get(state, 'authentication');
+  const { isAuthenticated, token, username } = _.get(state, 'authentication');
 
-  if (isAuthenticated && token && userId) {
-    request.profile(userId, token).then(({ projects }) => {
-      dispatch({ type: SET_PROFILE_DATA, payload: { projects } });
+  if (isAuthenticated && token && username) {
+    request.userProjects(username, token).then(({ username: reqUsername }) => {
+      dispatch({ type: SET_PROFILE_DATA, payload: { username: reqUsername } });
     }).catch((err) => {
       console.log('Error: ', err);
       dispatch(logOut());
