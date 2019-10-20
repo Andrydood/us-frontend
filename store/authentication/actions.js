@@ -13,10 +13,8 @@ export const authenticateFromToken = () => (dispatch) => {
   if (window) {
     const token = window.localStorage.getItem(TOKEN_KEY);
     if (token) {
-      // TODO: WHY!?
-      const { id, email } = JSON.parse(atob(token.split('.')[1]));
-      const userId = btoa(id).toString().replace(/={1,2}$/, '');
-      return dispatch({ type: LOGIN_SUCCESS, payload: { token, userId, email } });
+      const { id: userId, username } = JSON.parse(atob(token.split('.')[1]));
+      return dispatch({ type: LOGIN_SUCCESS, payload: { token, userId, username } });
     }
     if (window.location.pathname !== '/login') {
       window.location.href = '/login';
