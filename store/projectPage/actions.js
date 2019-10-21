@@ -9,7 +9,7 @@ export const getProjectData = projectId => (dispatch, getState) => {
 
   if (isAuthenticated && token && projectId) {
     request.project(projectId, token).then((project) => {
-      dispatch({ type: SET_PROJECT_DATA, payload: { name: project.name, projectId } });
+      dispatch({ type: SET_PROJECT_DATA, payload: { project } });
     }).catch((err) => {
       console.log('Error: ', err);
       dispatch(logOut());

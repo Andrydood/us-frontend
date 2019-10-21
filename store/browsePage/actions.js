@@ -8,7 +8,7 @@ export const getBrowseProjects = () => (dispatch, getState) => {
   const { isAuthenticated, token } = _.get(state, 'authentication');
 
   if (isAuthenticated && token) {
-    request.browse(token).then((projects) => {
+    request.browse(token).then(({ projects }) => {
       dispatch({ type: SET_BROWSE_LIST, payload: { projects } });
     }).catch((err) => {
       console.log('Error: ', err);

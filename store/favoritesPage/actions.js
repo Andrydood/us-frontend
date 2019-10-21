@@ -8,7 +8,7 @@ export const getFavoriteProjects = () => (dispatch, getState) => {
   const { isAuthenticated, token } = _.get(state, 'authentication');
 
   if (isAuthenticated && token) {
-    request.favorites(token).then((projects) => {
+    request.favorites(token).then(({ projects }) => {
       dispatch({ type: SET_FAVORITES_LIST, payload: { projects } });
     }).catch((err) => {
       console.log('Error: ', err);

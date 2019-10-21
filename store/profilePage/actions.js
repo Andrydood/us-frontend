@@ -1,15 +1,15 @@
 import _ from 'lodash';
-import { SET_PROFILE_DATA } from '~store/profilePage/actionTypes';
+import { SET_USER_DATA, SET_USER_PROJECTS } from '~store/profilePage/actionTypes';
 import { logOut } from '~store/authentication/actions';
 import request from '~lib/request';
 
-export const getProfileData = () => (dispatch, getState) => {
+export const getUserData = username => (dispatch, getState) => {
   const state = getState();
-  const { isAuthenticated, token, username } = _.get(state, 'authentication');
+  const { isAuthenticated, token } = _.get(state, 'authentication');
 
-  if (isAuthenticated && token && username) {
-    request.userProjects(username, token).then(({ username: reqUsername }) => {
-      dispatch({ type: SET_PROFILE_DATA, payload: { username: reqUsername } });
+  if (isAuthenticated && token) {
+    request.profile(username, token).then((userData) => {
+      dispatch({ type: SET_USER_DATA, payload: { userData } });
     }).catch((err) => {
       console.log('Error: ', err);
       dispatch(logOut());
@@ -17,4 +17,26 @@ export const getProfileData = () => (dispatch, getState) => {
   } else {
     dispatch(logOut());
   }
+};
+
+export const getUserProjects = username => (dispatch, getState) => {
+  const state = getState();
+  const { isAuthenticated, token } = _.get(state, 'authentication');
+
+  if (isAuthenticated && token) {
+    request.userProjects(username, token).then(({ projects }) => {
+      dispatch({ type: SET_USER_PROJECTS, payload: { projects } });
+    }).catch((err) => {
+      console.log('Error: ', err);
+      dispatch(logOut());
+    });
+  } else {
+    dispatch(logOut());
+  }
+};
+
+
+export const getProfileData = username => (dispatch) => {
+  dispatch(getUserData(username));
+  dispatch(getUserProjects(username));
 };
