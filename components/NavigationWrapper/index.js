@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Header from '~components/Header/Container';
-import NavBar from '~components/NavBar';
+import NavBar from '~components/NavBar/Container';
 
 const NavigationWrapper = ({ children }) => (
   <Fragment>
