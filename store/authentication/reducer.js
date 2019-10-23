@@ -11,7 +11,7 @@ const initialState = {
   isFetching: false,
   isAuthenticated: false,
   token: null,
-  email: null,
+  username: null,
   userId: null,
 };
 
@@ -21,7 +21,7 @@ const reducer = createReducer(initialState, {
     isFetching: true,
     isAuthenticated: false,
     token: null,
-    email: null,
+    username: null,
     userId: null,
   }),
   [LOGIN_SUCCESS]: (state, { payload }) => ({
@@ -29,7 +29,7 @@ const reducer = createReducer(initialState, {
     isFetching: false,
     isAuthenticated: true,
     token: payload.token,
-    email: payload.email,
+    username: payload.username,
     userId: payload.userId,
   }),
   [LOGIN_FAILURE]: state => ({
@@ -37,7 +37,7 @@ const reducer = createReducer(initialState, {
     isFetching: false,
     isAuthenticated: false,
     token: null,
-    email: null,
+    username: null,
     userId: null,
   }),
   [LOGOUT_SUCCESS]: state => ({
@@ -45,7 +45,7 @@ const reducer = createReducer(initialState, {
     isFetching: false,
     isAuthenticated: false,
     token: null,
-    email: null,
+    username: null,
     userId: null,
   }),
 });
