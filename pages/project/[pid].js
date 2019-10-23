@@ -10,7 +10,7 @@ const Project = () => {
   const { pid } = router.query;
 
   return (
-    <AuthenticationWrapper>
+    <AuthenticationWrapper redirectOnFail>
       <DataWrapper needsAuthentication dataId={pid}>
         <NavigationWrapper>
           <ProjectSummary />
