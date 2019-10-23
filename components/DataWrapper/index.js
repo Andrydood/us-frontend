@@ -29,7 +29,7 @@ const DataWrapper = ({
 
 DataWrapper.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
-  needsAuthentication: PropTypes.bool.isRequired,
+  needsAuthentication: PropTypes.bool,
   getData: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -42,6 +42,7 @@ DataWrapper.propTypes = {
 DataWrapper.defaultProps = {
   getData: () => {},
   dataId: null,
+  needsAuthentication: false,
 };
 
 export default DataWrapper;

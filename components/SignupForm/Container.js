@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 
-import LoginForm from '~components/LoginForm';
+import SignupForm from '~components/SignupForm';
 
 const mapStateToProps = state => ({
   isAuthenticated: state.authentication.isAuthenticated,
 });
 
-export default connect(mapStateToProps)(LoginForm);
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);
