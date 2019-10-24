@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import _ from 'lodash';
 
-import { signUp } from '~lib/authentication';
+import request from '~lib/request';
 import { emailIsValid } from '~lib/helpers';
 
 import LocationSelector from '~components/LocationSelector/Container';
@@ -61,7 +60,7 @@ const SignupForm = ({
         setBio(value);
         break;
       case 'password':
-        if (value.length <= 3) {
+        if (value.length <= 5) {
           setPasswordError('Password is too short');
         } else if (value.length > 30) {
           setPasswordError('Password is too long');
@@ -83,17 +82,7 @@ const SignupForm = ({
     }
   };
 
-  const handleCheckboxInput = (value, isChecked) => {
-    const newSkills = skillIds;
-    if (isChecked) {
-      newSkills.push(value);
-    } else {
-      _.pull(newSkills, value);
-    }
-    setSkillIds(newSkills);
-  };
-
-  const inputIsValid = !emailError
+  const inputIsValid = () => !emailError
   && !usernameError
   && !passwordError
   && !secondPasswordError
@@ -105,8 +94,8 @@ const SignupForm = ({
 
   const submitSignUp = (e) => {
     e.preventDefault();
-    if (inputIsValid) {
-      signUp({
+    if (inputIsValid()) {
+      request.signUp({
         email,
         username,
         password,
@@ -115,8 +104,8 @@ const SignupForm = ({
         skillIds,
       }).then(() => {
         window.location.href = '/login';
-      }).catch(({ constraint }) => {
-        setErrorMessage(constraint);
+      }).catch(({ message }) => {
+        setErrorMessage(message);
       });
     }
   };
@@ -127,18 +116,19 @@ const SignupForm = ({
         {errorMessage}
       </h5>
       <form onSubmit={submitSignUp}>
-        <input type="email" name="email" placeholder="email" onChange={e => handleTextInput(e.target)} />
+        <input type="email" name="email" placeholder="email(required)" onChange={e => handleTextInput(e.target)} required />
         <p>{emailError}</p>
-        <input type="text" name="username" placeholder="username" onChange={e => handleTextInput(e.target)} />
+        <input type="text" name="username" placeholder="username(required)" onChange={e => handleTextInput(e.target)} required />
         <p>{usernameError}</p>
-        <input type="text" name="bio" placeholder="bio" onChange={e => handleTextInput(e.target)} />
+        <textarea name="bio" placeholder="bio" onChange={e => handleTextInput(e.target)} />
         <p>{bioError}</p>
-        <input type="password" name="password" placeholder="password" onChange={e => handleTextInput(e.target)} />
+        <input type="password" name="password" placeholder="password(required)" onChange={e => handleTextInput(e.target)} required />
         <p>{passwordError}</p>
-        <input type="password" name="secondPassword" placeholder="password" onChange={e => handleTextInput(e.target)} />
+        <input type="password" name="secondPassword" placeholder="password again (required)" onChange={e => handleTextInput(e.target)} required />
         <p>{secondPasswordError}</p>
         <LocationSelector handleSelect={setLocationId} />
-        <SkillsSelector handleCheckboxInput={handleCheckboxInput} />
+        <p>Skills</p>
+        <SkillsSelector currentSkillIds={skillIds} setSkillIds={setSkillIds} />
         <input type="submit" />
       </form>
     </div>
