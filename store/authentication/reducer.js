@@ -13,6 +13,7 @@ const initialState = {
   token: null,
   username: null,
   userId: null,
+  authenticationDate: null,
 };
 
 const reducer = createReducer(initialState, {
@@ -31,6 +32,7 @@ const reducer = createReducer(initialState, {
     token: payload.token,
     username: payload.username,
     userId: payload.userId,
+    authenticationDate: payload.authenticationDate,
   }),
   [LOGIN_FAILURE]: state => ({
     ...state,
@@ -39,6 +41,7 @@ const reducer = createReducer(initialState, {
     token: null,
     username: null,
     userId: null,
+    authenticationDate: null,
   }),
   [LOGOUT_SUCCESS]: state => ({
     ...state,
@@ -47,6 +50,7 @@ const reducer = createReducer(initialState, {
     token: null,
     username: null,
     userId: null,
+    authenticationDate: null,
   }),
 });
 

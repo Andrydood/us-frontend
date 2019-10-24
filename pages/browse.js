@@ -1,9 +1,9 @@
 import AuthenticationWrapper from '~components/AuthenticationWrapper/Container';
-import DataWrapper from '~components/DataWrapper/FavoritesPageContainer';
+import DataWrapper from '~components/DataWrapper/BrowsePageContainer';
 import NavigationWrapper from '~components/NavigationWrapper';
-import ProjectList from '~components/ProjectList/FavoritesPageContainer';
+import ProjectList from '~components/ProjectList/BrowsePageContainer';
 
-const Favorites = () => (
+const Browse = () => (
   <AuthenticationWrapper>
     <DataWrapper needsAuthentication>
       <NavigationWrapper>
@@ -13,4 +13,4 @@ const Favorites = () => (
   </AuthenticationWrapper>
 );
 
-export default Favorites;
+export default Browse;
