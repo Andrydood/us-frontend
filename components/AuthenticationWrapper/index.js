@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 const AuthenticationWrapper = ({
   authenticationFunction,
   children,
+  redirectOnFail,
 }) => {
   useEffect(() => {
-    authenticationFunction();
+    authenticationFunction(redirectOnFail);
   }, []);
 
   return (
@@ -22,6 +23,11 @@ AuthenticationWrapper.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  redirectOnFail: PropTypes.bool,
+};
+
+AuthenticationWrapper.defaultProps = {
+  redirectOnFail: false,
 };
 
 export default AuthenticationWrapper;

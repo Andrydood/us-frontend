@@ -11,7 +11,7 @@ const User = () => {
   const { username } = router.query;
 
   return (
-    <AuthenticationWrapper>
+    <AuthenticationWrapper redirectOnFail>
       <DataWrapper needsAuthentication dataId={username}>
         <NavigationWrapper>
           <UserProfile />

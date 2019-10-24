@@ -4,7 +4,7 @@ import NavigationWrapper from '~components/NavigationWrapper';
 import ProjectList from '~components/ProjectList/FavoritesPageContainer';
 
 const Favorites = () => (
-  <AuthenticationWrapper>
+  <AuthenticationWrapper redirectOnFail>
     <DataWrapper needsAuthentication>
       <NavigationWrapper>
         <ProjectList />

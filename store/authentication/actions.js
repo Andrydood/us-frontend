@@ -7,7 +7,7 @@ import {
 
 import { TOKEN_KEY } from '~lib/authentication';
 
-export const authenticateFromToken = () => (dispatch) => {
+export const authenticateFromToken = redirectOnFail => (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
 
   if (window) {
@@ -16,7 +16,7 @@ export const authenticateFromToken = () => (dispatch) => {
       const { id: userId, username } = JSON.parse(atob(token.split('.')[1]));
       return dispatch({ type: LOGIN_SUCCESS, payload: { token, userId, username } });
     }
-    if (window.location.pathname !== '/login') {
+    if (redirectOnFail) {
       window.location.href = '/login';
     }
     return dispatch({ type: LOGIN_FAILURE });
