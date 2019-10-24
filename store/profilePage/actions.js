@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { SET_USER_DATA, SET_USER_PROJECTS } from '~store/profilePage/actionTypes';
-import { logOut } from '~store/authentication/actions';
 import request from '~lib/request';
 
 export const getUserData = username => (dispatch, getState) => {
@@ -12,10 +11,8 @@ export const getUserData = username => (dispatch, getState) => {
       dispatch({ type: SET_USER_DATA, payload: { userData } });
     }).catch((err) => {
       console.log('Error: ', err);
-      dispatch(logOut());
+      window.location.href = '/404';
     });
-  } else {
-    dispatch(logOut());
   }
 };
 
@@ -28,10 +25,8 @@ export const getUserProjects = username => (dispatch, getState) => {
       dispatch({ type: SET_USER_PROJECTS, payload: { projects } });
     }).catch((err) => {
       console.log('Error: ', err);
-      dispatch(logOut());
+      window.location.href = '/404';
     });
-  } else {
-    dispatch(logOut());
   }
 };
 

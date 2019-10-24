@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { SET_BROWSE_LIST } from '~store/browsePage/actionTypes';
-import { logOut } from '~store/authentication/actions';
 import request from '~lib/request';
 
 export const getBrowseProjects = () => (dispatch, getState) => {
@@ -12,9 +11,7 @@ export const getBrowseProjects = () => (dispatch, getState) => {
       dispatch({ type: SET_BROWSE_LIST, payload: { projects } });
     }).catch((err) => {
       console.log('Error: ', err);
-      dispatch(logOut());
+      window.location.href = '/404';
     });
-  } else {
-    dispatch(logOut());
   }
 };

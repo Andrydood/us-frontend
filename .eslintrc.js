@@ -5,7 +5,8 @@ module.exports = {
         "map": [
           ["~components", "./components"],
           ["~store", "./store"],
-          ["~lib", "./lib"]
+          ["~lib", "./lib"],
+          ["~pages", "./pages"]
         ],
         "extensions": [ ".js", ".scss", ".json"]
       }

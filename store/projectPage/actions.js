@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { SET_PROJECT_DATA } from '~store/projectPage/actionTypes';
-import { logOut } from '~store/authentication/actions';
 import request from '~lib/request';
 
 export const getProjectData = projectId => (dispatch, getState) => {
@@ -12,9 +11,7 @@ export const getProjectData = projectId => (dispatch, getState) => {
       dispatch({ type: SET_PROJECT_DATA, payload: { project } });
     }).catch((err) => {
       console.log('Error: ', err);
-      dispatch(logOut());
+      window.location.href = '/404';
     });
-  } else {
-    dispatch(logOut());
   }
 };

@@ -5,7 +5,7 @@ import { authenticateFromInput } from '~lib/authentication';
 
 const LoginForm = ({ isAuthenticated }) => {
   if (isAuthenticated) {
-    window.location.href = '/';
+    window.location.href = '/browse';
   }
 
   const [email, setEmail] = useState('');

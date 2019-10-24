@@ -11,7 +11,7 @@ const SignupForm = ({
   isAuthenticated,
 }) => {
   if (isAuthenticated) {
-    window.location.href = '/';
+    window.location.href = '/browse';
   }
 
   const [email, setEmail] = useState('');
