@@ -6,6 +6,7 @@ const NavBar = ({ username }) => (
     <Link href="/"><a>Browse</a></Link>
     <Link href={`/user/${username}`}><a>Profile</a></Link>
     <Link href="/favorites"><a>Favorites</a></Link>
+    <Link href="/new-project"><a>New Project</a></Link>
   </div>
 );
 
