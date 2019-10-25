@@ -4,7 +4,7 @@ import NavigationWrapper from '~components/NavigationWrapper';
 import NewProjectForm from '~components/NewProjectForm/Container';
 
 const NewProject = () => (
-  <AuthenticationWrapper>
+  <AuthenticationWrapper redirectOnFail>
     <DataWrapper>
       <NavigationWrapper>
         <NewProjectForm />

@@ -1,1 +1,2 @@
+export const DATA_REQUEST = 'DATA_REQUEST';
 export const SET_BROWSE_LIST = 'SET_BROWSE_LIST';

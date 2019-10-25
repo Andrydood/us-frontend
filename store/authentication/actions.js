@@ -16,38 +16,38 @@ export const logOut = () => (dispatch) => {
 };
 
 
-export const authenticateFromToken = () => async (dispatch, getState) => {
-  dispatch({ type: LOGIN_REQUEST });
+export const authenticateFromToken = redirectOnFail => async (dispatch, getState) => {
+  const state = getState();
+  const { isAuthenticated, authenticationDate, token: oldToken } = _.get(state, 'authentication');
 
-  const token = window.localStorage.getItem(TOKEN_KEY);
+  if (!isAuthenticated || ((new Date() - new Date(authenticationDate)) > 900000)) {
+    const token = oldToken || window.localStorage.getItem(TOKEN_KEY);
 
-  if (token) {
-    try {
-      const state = getState();
-      const { authenticationDate: oldAuthenticationDate } = _.get(state, 'authentication');
+    if (token) {
+      try {
+        dispatch({ type: LOGIN_REQUEST });
+        const { token: newToken } = await request.refreshToken(token);
+        window.localStorage.setItem(TOKEN_KEY, newToken);
 
-      let newToken = token;
-
-      if ((new Date() - new Date(oldAuthenticationDate)) > 900000) {
-        const response = await request.refreshToken(token);
-        newToken = response.token;
+        const { id: userId, username } = JSON.parse(atob(token.split('.')[1]));
+        return dispatch({
+          type: LOGIN_SUCCESS,
+          payload: {
+            token: newToken,
+            userId,
+            username,
+            authenticationDate: new Date(),
+          },
+        });
+      } catch (err) {
+        dispatch({ type: LOGIN_FAILURE });
+        return dispatch(logOut());
       }
+    }
 
-      const { id: userId, username } = JSON.parse(atob(token.split('.')[1]));
-      const authenticationDate = new Date();
-      return dispatch({
-        type: LOGIN_SUCCESS,
-        payload: {
-          token: newToken,
-          userId,
-          username,
-          authenticationDate,
-        },
-      });
-    } catch (err) {
-      console.log('Token not valid');
-      dispatch(logOut());
+    dispatch({ type: LOGIN_FAILURE });
+    if (redirectOnFail) {
+      window.location.href = '/login';
     }
   }
-  return dispatch({ type: LOGIN_FAILURE });
 };

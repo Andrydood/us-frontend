@@ -1,6 +1,6 @@
 import { createReducer } from '~lib/redux';
 
-import { SET_PROJECT_DATA } from '~store/projectPage/actionTypes';
+import { SET_PROJECT_DATA, DATA_REQUEST } from '~store/projectPage/actionTypes';
 
 const initialState = {
   owner: null,
@@ -12,9 +12,23 @@ const initialState = {
   contact: {},
   location: null,
   neededSkills: [],
+  isFetching: false,
 };
 
 const reducer = createReducer(initialState, {
+  [DATA_REQUEST]: state => ({
+    ...state,
+    owner: null,
+    id: null,
+    name: null,
+    description: null,
+    inspiredBy: null,
+    assets: null,
+    contact: {},
+    location: null,
+    neededSkills: [],
+    isFetching: true,
+  }),
   [SET_PROJECT_DATA]: (state, { payload }) => ({
     ...state,
     owner: payload.project.owner,
@@ -26,6 +40,7 @@ const reducer = createReducer(initialState, {
     contact: payload.project.contact,
     location: payload.project.location,
     neededSkills: payload.project.neededSkills,
+    isFetching: false,
   }),
 });
 

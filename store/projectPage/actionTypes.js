@@ -1,1 +1,2 @@
+export const DATA_REQUEST = 'DATA_REQUEST';
 export const SET_PROJECT_DATA = 'SET_PROJECT_DATA';
