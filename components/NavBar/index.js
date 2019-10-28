@@ -11,8 +11,11 @@ const NavBar = ({ username }) => (
 );
 
 NavBar.propTypes = {
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
 };
 
+NavBar.defaultProps = {
+  username: '',
+};
 
 export default NavBar;

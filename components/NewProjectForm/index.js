@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import request from '~lib/request';
-
 import LocationSelector from '~components/LocationSelector/Container';
 import SkillsSelector from '~components/SkillsSelector/Container';
 
-const NewProjectForm = ({ token }) => {
+const NewProjectForm = ({ createProject }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [inspiredBy, setInspiredBy] = useState('');
@@ -76,17 +74,13 @@ const NewProjectForm = ({ token }) => {
   const submitForm = (e) => {
     e.preventDefault();
     if (inputIsValid()) {
-      request.createProject({
+      createProject({
         name,
         description,
         inspiredBy,
         assets,
         locationId,
         skillsNeeded: skillIds,
-      }, token).then(({ id }) => {
-        window.location.href = `/project/${id}`;
-      }).catch(({ message }) => {
-        setErrorMessage(message);
       });
     } else if (skillIds.length === 0) {
       setErrorMessage('Select at least 1 skill');
@@ -115,7 +109,11 @@ const NewProjectForm = ({ token }) => {
 };
 
 NewProjectForm.propTypes = {
-  token: PropTypes.string.isRequired,
+  createProject: PropTypes.func,
+};
+
+NewProjectForm.defaultProps = {
+  createProject: () => {},
 };
 
 export default NewProjectForm;

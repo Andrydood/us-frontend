@@ -4,9 +4,9 @@ import request from '~lib/request';
 
 export const getBrowseProjects = () => (dispatch, getState) => {
   const state = getState();
-  const { isAuthenticated, token } = _.get(state, 'authentication');
+  const { token } = _.get(state, 'authentication');
 
-  if (isAuthenticated && token) {
+  if (token) {
     dispatch({ type: DATA_REQUEST });
     request.browse(token).then(({ projects }) => {
       dispatch({ type: SET_BROWSE_LIST, payload: { projects } });

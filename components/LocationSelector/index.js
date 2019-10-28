@@ -11,8 +11,13 @@ const LocationSelector = ({ handleSelect, locations }) => (
 );
 
 LocationSelector.propTypes = {
-  handleSelect: PropTypes.func.isRequired,
-  locations: PropTypes.arrayOf(locationShape).isRequired,
+  handleSelect: PropTypes.func,
+  locations: PropTypes.arrayOf(locationShape),
+};
+
+LocationSelector.defaultProps = {
+  handleSelect: () => {},
+  locations: [],
 };
 
 export default LocationSelector;

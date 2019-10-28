@@ -136,7 +136,11 @@ const SignupForm = ({
 };
 
 SignupForm.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+SignupForm.defaultProps = {
+  isAuthenticated: false,
 };
 
 export default SignupForm;

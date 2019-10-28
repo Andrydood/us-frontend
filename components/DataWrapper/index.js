@@ -41,7 +41,6 @@ DataWrapper.propTypes = {
   ]),
 };
 
-
 DataWrapper.defaultProps = {
   getData: () => {},
   dataId: null,

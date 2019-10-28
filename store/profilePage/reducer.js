@@ -11,8 +11,6 @@ const initialState = {
   userData: {
     id: null,
     username: null,
-    firstName: null,
-    lastName: null,
     bio: null,
     location: null,
     skills: [],
@@ -32,8 +30,6 @@ const reducer = createReducer(initialState, {
     ...state,
     userData: {
       id: null,
-      username: null,
-      firstName: null,
       lastName: null,
       bio: null,
       location: null,
@@ -51,8 +47,6 @@ const reducer = createReducer(initialState, {
     userData: {
       id: payload.userData.id,
       username: payload.userData.username,
-      firstName: payload.userData.firstName,
-      lastName: payload.userData.lastName,
       bio: payload.userData.bio,
       location: payload.userData.location,
       skills: payload.userData.skills,

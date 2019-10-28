@@ -28,7 +28,11 @@ const LoginForm = ({ isAuthenticated }) => {
 };
 
 LoginForm.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+LoginForm.defaultProps = {
+  isAuthenticated: false,
 };
 
 export default LoginForm;

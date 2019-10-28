@@ -35,8 +35,13 @@ const SkillsSelector = ({ skills, currentSkillIds, setSkillIds }) => {
 
 SkillsSelector.propTypes = {
   setSkillIds: PropTypes.func.isRequired,
-  currentSkillIds: PropTypes.arrayOf(PropTypes.number).isRequired,
-  skills: PropTypes.arrayOf(skillShape).isRequired,
+  currentSkillIds: PropTypes.arrayOf(PropTypes.number),
+  skills: PropTypes.arrayOf(skillShape),
+};
+
+SkillsSelector.defaultProps = {
+  currentSkillIds: [],
+  skills: [],
 };
 
 export default SkillsSelector;
