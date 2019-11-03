@@ -1,15 +1,25 @@
+import { Fragment } from 'react';
 import SignupForm from '~components/SignupForm/Container';
-import AuthenticationWrapper from '~components/AuthenticationWrapper/Container';
-import DataWrapper from '~components/DataWrapper/AttributesContainer';
 import UnauthenticatedHeader from '~components/UnauthenticatedHeader';
+import usePageType from '~hooks/usePageType';
+import useAuthentication from '~hooks/useAuthentication';
+import useData from '~hooks/useData';
+import { getAttributes } from '~store/attributes/actions';
+import pageTypes from '~lib/pageTypes';
 
-const Login = () => (
-  <AuthenticationWrapper>
-    <DataWrapper>
+const SignUp = () => {
+  usePageType(pageTypes.signUp);
+  useAuthentication();
+  useData({
+    getData: getAttributes,
+  });
+
+  return (
+    <Fragment>
       <UnauthenticatedHeader />
       <SignupForm />
-    </DataWrapper>
-  </AuthenticationWrapper>
-);
+    </Fragment>
+  );
+};
 
-export default Login;
+export default SignUp;

@@ -1,24 +1,30 @@
 import { useRouter } from 'next/router';
 
-import AuthenticationWrapper from '~components/AuthenticationWrapper/Container';
-import DataWrapper from '~components/DataWrapper/ProfilePageContainer';
 import NavigationWrapper from '~components/NavigationWrapper';
 import ProjectList from '~components/ProjectList/ProfilePageContainer';
 import UserProfile from '~components/UserProfile/Container';
+import usePageType from '~hooks/usePageType';
+import useAuthentication from '~hooks/useAuthentication';
+import useData from '~hooks/useData';
+import { getProfileData } from '~store/profilePage/actions';
+import pageTypes from '~lib/pageTypes';
 
 const User = () => {
   const router = useRouter();
   const { username } = router.query;
 
+  usePageType(pageTypes.profile);
+  useAuthentication({ redirectOnFail: true });
+  useData({
+    getData: () => getProfileData(username),
+  });
+
+
   return (
-    <AuthenticationWrapper redirectOnFail>
-      <DataWrapper needsAuthentication dataId={username}>
-        <NavigationWrapper>
-          <UserProfile />
-          <ProjectList />
-        </NavigationWrapper>
-      </DataWrapper>
-    </AuthenticationWrapper>
+    <NavigationWrapper>
+      <UserProfile />
+      <ProjectList />
+    </NavigationWrapper>
   );
 };
 

@@ -49,5 +49,6 @@ export const authenticateFromToken = redirectOnFail => async (dispatch, getState
     if (redirectOnFail) {
       window.location.href = '/login';
     }
+    return null;
   }
 };

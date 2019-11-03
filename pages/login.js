@@ -1,12 +1,20 @@
+import { Fragment } from 'react';
 import LoginForm from '~components/LoginForm/Container';
-import AuthenticationWrapper from '~components/AuthenticationWrapper/Container';
 import UnauthenticatedHeader from '~components/UnauthenticatedHeader';
+import usePageType from '~hooks/usePageType';
+import useAuthentication from '~hooks/useAuthentication';
+import pageTypes from '~lib/pageTypes';
 
-const Login = () => (
-  <AuthenticationWrapper>
-    <UnauthenticatedHeader />
-    <LoginForm />
-  </AuthenticationWrapper>
-);
+const Login = () => {
+  usePageType(pageTypes.login);
+  useAuthentication();
+
+  return (
+    <Fragment>
+      <UnauthenticatedHeader />
+      <LoginForm />
+    </Fragment>
+  );
+};
 
 export default Login;

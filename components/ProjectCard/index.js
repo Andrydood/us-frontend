@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import PropTypes from 'prop-types';
+import Link from '~components/Link';
 import { skillShape } from '~lib/shapes';
 
 const ProjectCard = ({
@@ -11,11 +11,9 @@ const ProjectCard = ({
 }) => (
   <div>
     <Link href="/project/[id]" as={`/project/${id}`}>
-      <a>
-        {JSON.stringify({
-          owner, location, neededSkills, name, id,
-        })}
-      </a>
+      {JSON.stringify({
+        owner, location, neededSkills, name, id,
+      })}
     </Link>
   </div>
 );

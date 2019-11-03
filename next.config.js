@@ -9,6 +9,7 @@ module.exports = withImages(withSass({
       '~store': path.join(__dirname, 'store'),
       '~lib': path.join(__dirname, 'lib'),
       '~pages': path.join(__dirname, 'pages'),
+      '~hooks': path.join(__dirname, 'hooks'),
     };
     config.resolve.alias = Object.assign(config.resolve.alias, aliases);
 

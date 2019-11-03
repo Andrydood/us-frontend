@@ -12,6 +12,7 @@ import browsePage from '~store/browsePage/reducer';
 import favoritesPage from '~store/favoritesPage/reducer';
 import profilePage from '~store/profilePage/reducer';
 import projectPage from '~store/projectPage/reducer';
+import navigation from '~store/navigation/reducer';
 
 const reducers = combineReducers({
   authentication,
@@ -20,7 +21,9 @@ const reducers = combineReducers({
   favoritesPage,
   profilePage,
   projectPage,
+  navigation,
 });
+
 const makeStore = initialState => createStore(
   reducers,
   initialState,

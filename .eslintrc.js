@@ -6,7 +6,8 @@ module.exports = {
           ["~components", "./components"],
           ["~store", "./store"],
           ["~lib", "./lib"],
-          ["~pages", "./pages"]
+          ["~pages", "./pages"],
+          ["~hooks", "./hooks"]
         ],
         "extensions": [ ".js", ".scss", ".json"]
       }
