@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import Link from '~components/Link';
+import Link from '~components/Link/Container';
+import pageTypes from '~lib/pageTypes';
 import { skillShape } from '~lib/shapes';
 
 const ProjectCard = ({
@@ -10,7 +11,7 @@ const ProjectCard = ({
   id,
 }) => (
   <div>
-    <Link href="/project/[id]" as={`/project/${id}`}>
+    <Link href="/project/[id]" as={`/project/${id}`} pageType={pageTypes.project}>
       {JSON.stringify({
         owner, location, neededSkills, name, id,
       })}

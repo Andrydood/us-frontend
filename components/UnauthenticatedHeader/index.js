@@ -1,9 +1,10 @@
-import Link from 'next/link';
+import Link from '~components/Link';
+import pageTypes from '~lib/pageTypes';
 
 const UnauthenticatedHeader = () => (
   <div>
-    <Link href="/login"><a>Log In</a></Link>
-    <Link href="/signup"><a>Sign Up</a></Link>
+    <Link href="/login" pageType={pageTypes.login}>Log In</Link>
+    <Link href="/signup" pageType={pageTypes.signup}>Sign Up</Link>
   </div>
 );
 

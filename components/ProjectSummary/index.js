@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import Link from 'next/link';
-
+import Link from '~components/Link';
+import pageTypes from '~lib/pageTypes';
 import { skillShape } from '~lib/shapes';
 
 const ProjectSummary = ({
@@ -18,7 +18,7 @@ const ProjectSummary = ({
   deleteProject,
 }) => (
   <div>
-    <Link href={`/user/${owner}`}><a>{JSON.stringify({ owner })}</a></Link>
+    <Link href="/user/[username]" as={`/user/${owner}`} pageType={pageTypes.profile}>{JSON.stringify({ owner })}</Link>
     <h1>{JSON.stringify({ name })}</h1>
     <h1>{JSON.stringify({ description })}</h1>
     <h1>{JSON.stringify({ inspiredBy })}</h1>
