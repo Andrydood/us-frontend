@@ -15,15 +15,19 @@ const NavBar = ({ username, currentPage }) => (
   <div className={styles.navBar}>
     <Link href="/browse" pageType={pageTypes.browse} className={styles.link}>
       <img src={currentPage === pageTypes.browse ? selectedBrowseIcon : browseIcon} alt="home" className={styles.icon} />
+      <span className={styles.description}>Home</span>
     </Link>
     <Link href="/user/[username]" as={`/user/${username}`} pageType={pageTypes.profile} className={styles.link}>
       <img src={currentPage === pageTypes.profile ? selectedProfileIcon : profileIcon} alt="home" className={styles.icon} />
+      <span className={styles.description}>{username || '-'}</span>
     </Link>
     <Link href="/favorites" pageType={pageTypes.favorites} className={styles.link}>
       <img src={currentPage === pageTypes.favorites ? selectedFavoritesIcon : favoritesIcon} alt="home" className={styles.icon} />
+      <span className={styles.description}>Favorites</span>
     </Link>
     <Link href="/new-project" pageType={pageTypes.newProject} className={styles.link}>
       <img src={currentPage === pageTypes.newProject ? selectedNewProjectIcon : newProjectIcon} alt="home" className={styles.icon} />
+      <span className={styles.description}>New Project</span>
     </Link>
   </div>
 );

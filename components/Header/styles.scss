@@ -19,25 +19,38 @@
 }
 
 .logo{
-  height: 100%;
-  padding: 5px 0 5px 12px;
+  height: 40px;
+  margin: 5px 0 5px 12px;
+  border-radius: 100%;
+  background: white;
   box-sizing: border-box;
   cursor: pointer;
 }
 
 .homeLink{
   height: 100%;
+  z-index: 1;
 }
 
 .logOut{
-  background: #4b86b4;
-  color: #e7eff6;
+  color: #000000;
+  background: #ffffff;
   border: none;
   border-radius: 5px;
   height: 30px;
   margin-right: 10px;
   cursor: pointer;
-  &:active{
-    background: #2a4d69;
-  }
+  z-index: 1;
+}
+
+.pageTitleContainer{
+  position: absolute;
+  width: 100vw;
+  text-align: center;
+}
+
+.pageTitle{
+  text-align: center;
+  max-width: 33vw;
+  overflow:hidden;
 }

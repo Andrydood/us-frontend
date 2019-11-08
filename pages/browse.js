@@ -5,7 +5,6 @@ import useAuthentication from '~hooks/useAuthentication';
 import useData from '~hooks/useData';
 import pageTypes from '~lib/pageTypes';
 import { getBrowseProjects } from '~store/browsePage/actions';
-import '~lib/shared.scss';
 
 const Browse = () => {
   usePageType(pageTypes.browse);

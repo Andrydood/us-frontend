@@ -1,0 +1,55 @@
+.profile{
+  width: 100%;
+  background: rgb(86, 161, 248);
+  margin-top: -10px;
+  padding-top: 12px;
+}
+
+.pictureContainer{
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 100%;
+  border: 3px solid rgb(255, 255, 255);
+  position: relative;
+  top: 0;
+  left: 0;
+  margin-left: 5px;
+}
+
+.picture{
+  height: 100%;
+}
+
+.contentWrapper{
+  background: #ffffff;
+  margin-top: -40px;
+  padding: 40px 0 10px 10px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.username{
+  display: block;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.bio{
+  display: block;
+  font-weight: 300;
+  font-size: 15px;
+  padding-bottom: 6px;
+}
+
+.globeIcon{
+  height: 10px;
+}
+
+.location{
+  display: block;
+  font-weight: 300;
+  font-size: 13px;
+}
+
+

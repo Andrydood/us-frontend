@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 
 import NavigationWrapper from '~components/NavigationWrapper';
-import ProjectList from '~components/ProjectList/ProfilePageContainer';
 import UserProfile from '~components/UserProfile/Container';
+import ProjectList from '~components/ProjectList/ProfilePageContainer';
 import usePageType from '~hooks/usePageType';
 import useAuthentication from '~hooks/useAuthentication';
 import useData from '~hooks/useData';

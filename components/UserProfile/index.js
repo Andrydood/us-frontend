@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import { skillShape } from '~lib/shapes';
+import styles from './styles.scss';
+import profilePicture from '~lib/static/profile-picture.jpg';
+import globeIcon from '~lib/static/globe.svg';
 
 const UserProfile = ({
   username,
@@ -7,11 +10,21 @@ const UserProfile = ({
   location,
   skills,
 }) => (
-  <div>
-    <h1>{JSON.stringify({ username })}</h1>
-    <h1>{JSON.stringify({ bio })}</h1>
-    <h1>{JSON.stringify({ location })}</h1>
-    <h1>{JSON.stringify(skills)}</h1>
+  <div className={styles.profile}>
+    <div className={styles.pictureContainer}>
+      <img src={profilePicture} className={styles.picture} alt="Profile" />
+    </div>
+    <div className={styles.contentWrapper}>
+      <span className={styles.username}>{username}</span>
+      <span className={styles.bio}>
+        {bio}
+      </span>
+      <span className={styles.location}>
+        <span><img src={globeIcon} alt="Globe" className={styles.globeIcon} /></span>
+        {location}
+      </span>
+
+    </div>
   </div>
 );
 
