@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
+import {
+  Heart,
+} from 'react-feather';
 import Link from '~components/Link/Container';
+import SkillBubble from '~components/SkillBubble';
 import pageTypes from '~lib/pageTypes';
 import { skillShape } from '~lib/shapes';
+import { timeFromCreation } from '~lib/helpers';
 import styles from './styles.scss';
 
 const ProjectCard = ({
@@ -10,11 +15,26 @@ const ProjectCard = ({
   neededSkills,
   name,
   id,
+  createdAt,
+  likes,
 }) => (
   <Link href="/project/[id]" as={`/project/${id}`} pageType={pageTypes.project} className={styles.container}>
     <div className={styles.card}>
-      <span className={styles.name}>{name}</span>
-      <span className={styles.owner}>{owner}</span>
+      <span className={styles.firstLine}>
+        <span className={styles.firstLineContents}>
+          <span className={styles.name}>{name}</span>
+          <span className={styles.likes}>
+            {likes || 0}
+            <Heart size={13} className={styles.heart} />
+          </span>
+        </span>
+      </span>
+      <span className={styles.secondLine}>
+        <span>{`${owner} · ${location} · ${timeFromCreation(createdAt)}`}</span>
+      </span>
+      <span className={styles.skills}>
+        {neededSkills.map(skill => <SkillBubble name={skill.name} id={skill.id} key={skill.id} />)}
+      </span>
     </div>
   </Link>
 );
@@ -25,6 +45,8 @@ ProjectCard.propTypes = {
   name: PropTypes.string,
   location: PropTypes.string,
   neededSkills: PropTypes.arrayOf(skillShape),
+  createdAt: PropTypes.string.isRequired,
+  likes: PropTypes.string,
 };
 
 ProjectCard.defaultProps = {
@@ -33,6 +55,7 @@ ProjectCard.defaultProps = {
   name: null,
   location: null,
   neededSkills: [],
+  likes: '0',
 };
 
 export default ProjectCard;

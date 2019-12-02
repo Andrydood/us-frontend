@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-import Link from '~components/Link';
-import pageTypes from '~lib/pageTypes';
 import { skillShape } from '~lib/shapes';
+import styles from './styles.scss';
 
 const ProjectSummary = ({
   owner,
@@ -17,17 +16,19 @@ const ProjectSummary = ({
   toggleFavoriteProject,
   deleteProject,
 }) => (
-  <div>
-    <Link href="/user/[username]" as={`/user/${owner}`} pageType={pageTypes.profile}>{JSON.stringify({ owner })}</Link>
-    <h1>{JSON.stringify({ name })}</h1>
-    <h1>{JSON.stringify({ description })}</h1>
-    <h1>{JSON.stringify({ inspiredBy })}</h1>
-    <h1>{JSON.stringify({ assets })}</h1>
-    <h1>{JSON.stringify({ location })}</h1>
-    <h1>{JSON.stringify(neededSkills)}</h1>
-    <h1>{JSON.stringify({ isFavorite })}</h1>
-    <button type="button" onClick={() => toggleFavoriteProject(id)}>Toggle Favorite</button>
-    {isOwner ? <button type="button" onClick={() => deleteProject(id)}>Delete</button> : null}
+  <div className={styles.project}>
+    {JSON.stringify(owner)}
+    {JSON.stringify(id)}
+    {JSON.stringify(name)}
+    {JSON.stringify(description)}
+    {JSON.stringify(inspiredBy)}
+    {JSON.stringify(assets)}
+    {JSON.stringify(location)}
+    {JSON.stringify(neededSkills)}
+    {JSON.stringify(isFavorite)}
+    {JSON.stringify(isOwner)}
+    {JSON.stringify(toggleFavoriteProject)}
+    {JSON.stringify(deleteProject)}
   </div>
 );
 

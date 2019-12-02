@@ -10,7 +10,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@svgr/webpack": "^4.3.3",
     "@zeit/next-sass": "^1.0.1",
+    "classnames": "^2.2.6",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.15",
     "next": "^9.0.0",
@@ -21,6 +23,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-feather": "^2.0.3",
     "react-redux": "^7.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"

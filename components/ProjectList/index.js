@@ -12,6 +12,8 @@ const ProjectList = ({ projects }) => (
           neededSkills={project.neededSkills}
           name={project.name}
           id={project.id}
+          createdAt={project.createdAt}
+          likes={project.likes}
           key={project.id}
         />
       )) : null}

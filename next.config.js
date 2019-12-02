@@ -1,8 +1,7 @@
 const path = require('path');
 const withSass = require('@zeit/next-sass');
-const withImages = require('next-images');
 
-module.exports = withImages(withSass({
+module.exports = withSass({
   webpack(config) {
     const aliases = {
       '~components': path.join(__dirname, 'components'),
@@ -13,6 +12,11 @@ module.exports = withImages(withSass({
     };
     config.resolve.alias = Object.assign(config.resolve.alias, aliases);
 
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+
     return config;
   },
   cssModules: true,
@@ -20,4 +24,4 @@ module.exports = withImages(withSass({
     importLoaders: 1,
     localIdentName: '[local]-[hash:base64:5]',
   },
-}));
+});
