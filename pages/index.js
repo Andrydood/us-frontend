@@ -1,3 +1,3 @@
-import Login from '~pages/login';
+import Browse from '~pages/browse';
 
-export default Login;
+export default Browse;

@@ -44,19 +44,23 @@ export const deleteProject = projectId => async (dispatch, getState) => {
 export const toggleFavoriteProject = projectId => async (dispatch, getState) => {
   const state = getState();
   const { token } = _.get(state, 'authentication');
-  const { isFavorite } = _.get(state, 'projectPage');
+  const { isFavorite, likes } = _.get(state, 'projectPage');
   if (token && projectId) {
     try {
       dispatch({ type: IS_FAVORITE_REQUEST });
 
+      let newLikes = likes;
+
       if (isFavorite) {
         await request.unFavoriteProject(projectId, token);
+        newLikes -= 1;
       } else {
         await request.favoriteProject(projectId, token);
+        newLikes += 1;
       }
       const { isFavorite: newIsFavorite } = await request.isFavorite(projectId, token);
 
-      dispatch({ type: SET_IS_FAVORITE, payload: { isFavorite: newIsFavorite } });
+      dispatch({ type: SET_IS_FAVORITE, payload: { isFavorite: newIsFavorite, likes: newLikes } });
     } catch (err) {
       console.log('Error: ', err);
       window.location.href = '/404';

@@ -1,18 +1,7 @@
 $likes-size: 50px;
 
-.container {
-  margin: 13px 13px 20px;
-  display: block;
-  background: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0 2px 14px rgba(0,0,0, 0.14);
+.link{
   text-decoration: none;
-  word-break:break-all;
-}
-
-.card{
-  padding: 13px;
-  color: black;
 }
 
 .firstLine, .secondLine{
@@ -30,8 +19,13 @@ $likes-size: 50px;
 .name{
   font-size: 21px;
   font-weight: 700;
-  word-break: break-word;
   width: calc(100% - #{$likes-size});
+}
+
+.header{
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 5px;
 }
 
 .likes{

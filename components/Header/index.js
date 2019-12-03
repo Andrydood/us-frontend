@@ -1,11 +1,19 @@
 import PropTypes from 'prop-types';
-import { Menu } from 'react-feather';
+import { Menu, X } from 'react-feather';
+import { useState } from 'react';
+import classnames from 'classnames';
 import Link from '~components/Link';
 import pageTypes from '~lib/pageTypes';
 import styles from './styles.scss';
 import LogoIcon from '~lib/static/logo.svg';
 
-const Header = ({ onClickLogout, currentPage, profileUsername }) => {
+const Header = ({ onClickLogout, currentPage }) => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuIsOpen(!menuIsOpen);
+  };
+
   let pageTitle = '';
 
   switch (currentPage) {
@@ -13,7 +21,7 @@ const Header = ({ onClickLogout, currentPage, profileUsername }) => {
       pageTitle = 'Browse';
       break;
     case pageTypes.profile:
-      pageTitle = profileUsername;
+      pageTitle = 'User';
       break;
     case pageTypes.favorites:
       pageTitle = 'Favorites';
@@ -32,9 +40,15 @@ const Header = ({ onClickLogout, currentPage, profileUsername }) => {
       <div className={styles.header}>
         <Link href="/browse" pageType={pageTypes.browse} className={styles.logoContainer}><LogoIcon className={styles.logo} /></Link>
         <span className={styles.pageTitle}>{pageTitle}</span>
-        <button onClick={onClickLogout} className={styles.menuIconContainer} type="button">
+        <button onClick={toggleMenu} className={styles.menuIconContainer} type="button">
           <Menu className={styles.menuIcon} size="28" />
         </button>
+        <div className={classnames(styles.sideMenu, { [styles.openMenu]: menuIsOpen })}>
+          <button onClick={toggleMenu} className={styles.menuIconContainer} type="button">
+            <X className={styles.closeIcon} size="28" />
+          </button>
+          <button className={styles.menuButton} onClick={onClickLogout} type="button">Log Out</button>
+        </div>
       </div>
     </div>
   );
@@ -43,12 +57,10 @@ const Header = ({ onClickLogout, currentPage, profileUsername }) => {
 Header.propTypes = {
   onClickLogout: PropTypes.func.isRequired,
   currentPage: PropTypes.string,
-  profileUsername: PropTypes.string,
 };
 
 Header.defaultProps = {
   currentPage: '',
-  profileUsername: '-',
 };
 
 export default Header;

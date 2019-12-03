@@ -14,6 +14,8 @@ const mapStateToProps = state => ({
   neededSkills: state.projectPage.neededSkills,
   isFavorite: state.projectPage.isFavorite,
   isOwner: state.projectPage.isOwner,
+  likes: state.projectPage.likes,
+  createdAt: state.projectPage.createdAt,
 });
 const mapDispatchToProps = { toggleFavoriteProject, deleteProject };
 

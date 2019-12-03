@@ -17,10 +17,12 @@ const initialState = {
   contact: {},
   location: null,
   neededSkills: [],
+  createdAt: null,
   isFetching: false,
   isFavorite: false,
   isFetchingIsFavorite: false,
   isOwner: false,
+  likes: null,
 };
 
 const reducer = createReducer(initialState, {
@@ -35,10 +37,12 @@ const reducer = createReducer(initialState, {
     contact: {},
     location: null,
     neededSkills: [],
+    createdAt: null,
     isFetching: true,
     isFavorite: false,
     isFetchingIsFavorite: true,
     isOwner: false,
+    likes: null,
   }),
   [SET_PROJECT_DATA]: (state, { payload }) => ({
     ...state,
@@ -51,6 +55,8 @@ const reducer = createReducer(initialState, {
     contact: payload.project.contact,
     location: payload.project.location,
     neededSkills: payload.project.neededSkills,
+    createdAt: payload.project.createdAt,
+    likes: payload.project.likes,
     isFetching: false,
     isFavorite: payload.isFavorite,
     isFetchingIsFavorite: false,
@@ -62,6 +68,7 @@ const reducer = createReducer(initialState, {
   }),
   [SET_IS_FAVORITE]: (state, { payload }) => ({
     ...state,
+    likes: payload.likes,
     isFavorite: payload.isFavorite,
     isFetchingIsFavorite: false,
   }),

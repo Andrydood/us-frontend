@@ -1,5 +1,16 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
+import {
+  Heart,
+  Trash,
+} from 'react-feather';
+import classnames from 'classnames';
 import { skillShape } from '~lib/shapes';
+import { timeFromCreation } from '~lib/helpers';
+import pageTypes from '~lib/pageTypes';
+import Card from '~components/Card';
+import SkillBubble from '~components/SkillBubble';
+import Link from '~components/Link/Container';
 import styles from './styles.scss';
 
 const ProjectSummary = ({
@@ -15,21 +26,54 @@ const ProjectSummary = ({
   isOwner,
   toggleFavoriteProject,
   deleteProject,
+  createdAt,
+  likes,
 }) => (
-  <div className={styles.project}>
-    {JSON.stringify(owner)}
-    {JSON.stringify(id)}
-    {JSON.stringify(name)}
-    {JSON.stringify(description)}
-    {JSON.stringify(inspiredBy)}
-    {JSON.stringify(assets)}
-    {JSON.stringify(location)}
-    {JSON.stringify(neededSkills)}
-    {JSON.stringify(isFavorite)}
-    {JSON.stringify(isOwner)}
-    {JSON.stringify(toggleFavoriteProject)}
-    {JSON.stringify(deleteProject)}
-  </div>
+  <Card>
+    <div className={styles.firstLine}>{name}</div>
+    <div className={styles.secondLine}>
+      <Link href="/user/[username]" as={`/user/${owner}`} pageType={pageTypes.profile} className={styles.username}>
+        {owner}
+      </Link>
+      {` · ${location} · ${timeFromCreation(createdAt)}`}
+    </div>
+
+    <div className={styles.header}>Looking For</div>
+    <div className={styles.skills}>
+      {neededSkills.map(skill => <SkillBubble name={skill.name} id={skill.id} key={skill.id} />)}
+    </div>
+
+    <div className={styles.header}>Details</div>
+    <div className={styles.text}>{description}</div>
+
+    {inspiredBy ? (
+      <Fragment>
+        <div className={styles.header}>Inspired By</div>
+        <div className={styles.text}>{inspiredBy}</div>
+      </Fragment>
+    ) : null}
+
+
+    {assets ? (
+      <Fragment>
+        <div className={styles.header}>Current Assets</div>
+        <div className={styles.text}>{assets}</div>
+      </Fragment>
+    ) : null}
+
+    <div className={styles.likes}>{`${likes || 0} ${likes === 1 ? 'Like' : 'Likes'}`}</div>
+
+    <div className={styles.links}>
+      <button type="button" onClick={() => toggleFavoriteProject(id)}>
+        <Heart className={classnames(styles.link, { [styles.isFavorite]: isFavorite })} />
+      </button>
+      {isOwner ? (
+        <button className={styles.trash} type="button" onClick={() => deleteProject(id)}>
+          <Trash className={classnames(styles.link)} />
+        </button>
+      ) : null}
+    </div>
+  </Card>
 );
 
 ProjectSummary.propTypes = {
@@ -38,6 +82,7 @@ ProjectSummary.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
   inspiredBy: PropTypes.string,
+  createdAt: PropTypes.string,
   assets: PropTypes.string,
   location: PropTypes.string,
   neededSkills: PropTypes.arrayOf(skillShape),
@@ -45,19 +90,22 @@ ProjectSummary.propTypes = {
   isOwner: PropTypes.bool,
   toggleFavoriteProject: PropTypes.func,
   deleteProject: PropTypes.func,
+  likes: PropTypes.number,
 };
 
 ProjectSummary.defaultProps = {
-  owner: null,
+  owner: '-',
   id: null,
   name: null,
   description: null,
   inspiredBy: null,
+  createdAt: null,
   assets: null,
   location: null,
   neededSkills: [],
   isFavorite: false,
   isOwner: false,
+  likes: null,
   toggleFavoriteProject: () => {},
   deleteProject: () => {},
 };

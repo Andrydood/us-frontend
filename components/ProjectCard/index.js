@@ -4,6 +4,7 @@ import {
 } from 'react-feather';
 import Link from '~components/Link/Container';
 import SkillBubble from '~components/SkillBubble';
+import Card from '~components/Card';
 import pageTypes from '~lib/pageTypes';
 import { skillShape } from '~lib/shapes';
 import { timeFromCreation } from '~lib/helpers';
@@ -18,8 +19,8 @@ const ProjectCard = ({
   createdAt,
   likes,
 }) => (
-  <Link href="/project/[id]" as={`/project/${id}`} pageType={pageTypes.project} className={styles.container}>
-    <div className={styles.card}>
+  <Link href="/project/[id]" as={`/project/${id}`} pageType={pageTypes.project} className={styles.link}>
+    <Card>
       <span className={styles.firstLine}>
         <span className={styles.firstLineContents}>
           <span className={styles.name}>{name}</span>
@@ -32,10 +33,10 @@ const ProjectCard = ({
       <span className={styles.secondLine}>
         <span>{`${owner} · ${location} · ${timeFromCreation(createdAt)}`}</span>
       </span>
-      <span className={styles.skills}>
+      <span>
         {neededSkills.map(skill => <SkillBubble name={skill.name} id={skill.id} key={skill.id} />)}
       </span>
-    </div>
+    </Card>
   </Link>
 );
 
