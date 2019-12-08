@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import styles from './styles.scss';
 
-const Card = ({ children }) => (
-  <div className={styles.card}>
+const Card = ({ children, className }) => (
+  <div className={classnames(styles.card, className)}>
     {children}
   </div>
 );
@@ -12,6 +13,11 @@ Card.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  className: PropTypes.string,
+};
+
+Card.defaultProps = {
+  className: null,
 };
 
 export default Card;

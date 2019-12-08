@@ -44,7 +44,7 @@ const SignupForm = ({
       case 'username':
         if (value.length <= 3) {
           setUsernameError('Username is too short');
-        } else if (value.length > 30) {
+        } else if (value.length > 20) {
           setUsernameError('Username is too long');
         } else {
           setUsernameError('');

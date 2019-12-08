@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
 import SignupForm from '~components/SignupForm/Container';
-import UnauthenticatedHeader from '~components/UnauthenticatedHeader';
 import usePageType from '~hooks/usePageType';
 import useAuthentication from '~hooks/useAuthentication';
 import useData from '~hooks/useData';
@@ -16,7 +15,6 @@ const SignUp = () => {
 
   return (
     <Fragment>
-      <UnauthenticatedHeader />
       <SignupForm />
     </Fragment>
   );

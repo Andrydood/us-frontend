@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
 import LoginForm from '~components/LoginForm/Container';
-import UnauthenticatedHeader from '~components/UnauthenticatedHeader';
 import usePageType from '~hooks/usePageType';
 import useAuthentication from '~hooks/useAuthentication';
 import pageTypes from '~lib/pageTypes';
@@ -11,7 +10,6 @@ const Login = () => {
 
   return (
     <Fragment>
-      <UnauthenticatedHeader />
       <LoginForm />
     </Fragment>
   );

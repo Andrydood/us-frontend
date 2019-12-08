@@ -1,0 +1,75 @@
+$logoWidth: 65px;
+
+.logoContainer{
+  border-radius: 100%;
+  background: #ffffff;
+  margin-left: calc(50% - (#{$logoWidth} / 2));
+  position: relative;
+  margin-top: -40px;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.logo{
+  height: $logoWidth;
+  display: block;
+}
+
+.title{
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card{
+  width: 300px;
+  margin: 50px auto;
+}
+
+.input{
+  display: block;
+  margin: 0 auto 18px auto;
+  width: 250px;
+  border-bottom: 1px solid #d2d2d2;
+}
+
+.icon{
+  stroke: #5a5a5a;
+}
+
+.field{
+  display: inline;
+  color: #5a5a5a;
+  border: none;
+  font-size: 16px;
+  padding: 12px 14px;
+  &:placeholder{
+    color: #5a5a5a;
+  }
+  &:focus{
+    outline: none;
+  }
+}
+
+.submitButton{
+  width: 250px;
+  padding: 16px 0;
+  display: block;
+  margin: 30px auto;
+  color: #F8F9FC;
+  font-weight: 700;
+  font-size: 16px;
+  background: #205782;
+}
+
+.signUpText{
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signUpLink{
+  color: #205782;
+  text-decoration: none;
+}

@@ -48,6 +48,7 @@ const Header = ({ onClickLogout, currentPage }) => {
             <X className={styles.closeIcon} size="28" />
           </button>
           <button className={styles.menuButton} onClick={onClickLogout} type="button">Log Out</button>
+          <button className={styles.menuButton} onClick={() => { window.location = '/help'; }} type="button">Help & Support</button>
         </div>
       </div>
     </div>
