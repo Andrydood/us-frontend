@@ -48,7 +48,7 @@ const reducer = createReducer(initialState, {
       id: payload.userData.id,
       username: payload.userData.username,
       bio: payload.userData.bio,
-      location: payload.userData.location,
+      location: payload.userData.location.label,
       skills: payload.userData.skills,
     },
     isFetchinUserData: false,

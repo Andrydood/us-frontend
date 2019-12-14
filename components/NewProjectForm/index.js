@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import LocationSelector from '~components/LocationSelector/Container';
 import SkillsSelector from '~components/SkillsSelector/Container';
+import LocationSelector from '~components/LocationSelector';
 
 const NewProjectForm = ({ createProject }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [inspiredBy, setInspiredBy] = useState('');
   const [assets, setAssets] = useState('');
-  const [locationId, setLocationId] = useState(1);
   const [skillIds, setSkillIds] = useState([]);
+  const [location, setLocation] = useState(null);
 
   const [nameError, setNameError] = useState('');
   const [descriptionError, setDescriptionError] = useState('');
@@ -69,6 +69,7 @@ const NewProjectForm = ({ createProject }) => {
   && !assetsError
   && !!name
   && !!description
+  && !!location
   && skillIds.length > 0;
 
   const submitForm = (e) => {
@@ -79,11 +80,13 @@ const NewProjectForm = ({ createProject }) => {
         description,
         inspiredBy,
         assets,
-        locationId,
+        location,
         skillsNeeded: skillIds,
       });
     } else if (skillIds.length === 0) {
       setErrorMessage('Select at least 1 skill');
+    } else if (!location) {
+      setErrorMessage('Select the headquarters of the project');
     }
   };
 
@@ -99,9 +102,9 @@ const NewProjectForm = ({ createProject }) => {
         <p>{inspiredByError}</p>
         <textarea name="assets" placeholder="Assets" onChange={e => handleTextInput(e.target)} />
         <p>{assetsError}</p>
-        <LocationSelector handleSelect={setLocationId} />
         <p>Skills (select at least one)</p>
         <SkillsSelector currentSkillIds={skillIds} setSkillIds={setSkillIds} />
+        <LocationSelector handleSelect={setLocation} />
         <input type="submit" />
       </form>
     </div>

@@ -53,7 +53,7 @@ const reducer = createReducer(initialState, {
     inspiredBy: payload.project.inspiredBy,
     assets: payload.project.assets,
     contact: payload.project.contact,
-    location: payload.project.location,
+    location: payload.project.location.label,
     neededSkills: payload.project.neededSkills,
     createdAt: payload.project.createdAt,
     likes: payload.project.likes,

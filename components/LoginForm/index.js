@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Mail, Lock } from 'react-feather';
-import Card from '~components/Card';
+import CardWithLogo from '~components/CardWithLogo';
 import Link from '~components/Link';
-import LogoIcon from '~lib/static/logo.svg';
 import styles from './styles.scss';
 
 import { authenticateFromInput } from '~lib/authentication';
@@ -15,16 +14,17 @@ const LoginForm = ({ isAuthenticated }) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const submitLogIn = (e) => {
+  const submitLogIn = async (e) => {
     e.preventDefault();
-    authenticateFromInput(email, password);
+    const loginError = await authenticateFromInput(email, password);
+    setError(loginError);
   };
 
   return (
-    <Card className={styles.card}>
-      <div className={styles.logoContainer}><LogoIcon className={styles.logo} /></div>
-      <div className={styles.title}>Sign In</div>
+    <CardWithLogo>
+      <div className={styles.title}>Log In</div>
       <form onSubmit={submitLogIn}>
         <div className={styles.input}>
           <Mail size={15} className={styles.icon} />
@@ -35,13 +35,14 @@ const LoginForm = ({ isAuthenticated }) => {
           <input id="password" placeholder="Password" type="password" className={styles.field} onChange={e => setPassword(e.target.value)} />
         </div>
         <button type="submit" className={styles.submitButton}>Log In</button>
+        <span className={styles.mainError}>{error}</span>
       </form>
       <span className={styles.signUpText}>
         Are you new?
         {' '}
         <Link href="/signup" className={styles.signUpLink}>Sign Up</Link>
       </span>
-    </Card>
+    </CardWithLogo>
   );
 };
 

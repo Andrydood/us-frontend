@@ -31,7 +31,7 @@ const ProjectCard = ({
         </span>
       </span>
       <span className={styles.secondLine}>
-        <span>{`${owner} · ${location} · ${timeFromCreation(createdAt)}`}</span>
+        <span>{`${owner} · ${location ? location.label : null} · ${timeFromCreation(createdAt)}`}</span>
       </span>
       <span>
         {neededSkills.map(skill => <SkillBubble name={skill.name} id={skill.id} key={skill.id} />)}

@@ -16,6 +16,23 @@
   stroke: #5a5a5a;
 }
 
+.error{
+  position: absolute;
+  margin-top: -24px;
+  margin-left: 25px;
+  font-size: 13px;
+  color: #737373;
+}
+
+.mainError{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 25px;
+  color: #d83939;
+}
+
 .field{
   display: inline;
   color: #5a5a5a;
@@ -42,22 +59,13 @@
   cursor: pointer;
 }
 
-.mainError{
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  margin-bottom: 25px;
-  color: #d83939;
-}
-
-.signUpText{
+.logInText{
   display: block;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.signUpLink{
+.link{
   color: #205782;
   text-decoration: none;
 }

@@ -1,23 +1,20 @@
 import PropTypes from 'prop-types';
+import Geosuggest from 'react-geosuggest';
 
-import { locationShape } from '~lib/shapes';
-
-const LocationSelector = ({ handleSelect, locations }) => (
-  <select onChange={e => handleSelect(e.target.value)}>
-    {locations.map(({ id, name }) => (
-      <option value={id} key={id}>{name}</option>
-    ))}
-  </select>
-);
+const LocationSelector = ({ handleSelect }) => {
+  const onSuggestSelect = (place) => {
+    const { label, placeId, location: coordinates } = place;
+    handleSelect({ label, placeId, coordinates });
+  };
+  return <Geosuggest placeDetailFields={[]} types={['(regions)']} onSuggestSelect={onSuggestSelect} />;
+};
 
 LocationSelector.propTypes = {
   handleSelect: PropTypes.func,
-  locations: PropTypes.arrayOf(locationShape),
 };
 
 LocationSelector.defaultProps = {
   handleSelect: () => {},
-  locations: [],
 };
 
 export default LocationSelector;

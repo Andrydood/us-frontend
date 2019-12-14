@@ -6,7 +6,7 @@ export const createProject = ({
   description,
   inspiredBy,
   assets,
-  locationId,
+  location,
   skillsNeeded,
 }) => (dispatch, getState) => {
   const state = getState();
@@ -18,7 +18,7 @@ export const createProject = ({
       description,
       inspiredBy,
       assets,
-      locationId,
+      location,
       skillsNeeded,
     }, token).then(({ id }) => {
       window.location.href = `/project/${id}`;

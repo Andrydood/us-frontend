@@ -29,7 +29,8 @@ export const authenticateFromToken = redirectOnFail => async (dispatch, getState
         const { token: newToken } = await request.refreshToken(token);
         window.localStorage.setItem(TOKEN_KEY, newToken);
 
-        const { id: userId, username } = JSON.parse(atob(token.split('.')[1]));
+        const { id: userId, username, initialSetupIsComplete } = JSON.parse(atob(token.split('.')[1]));
+
         return dispatch({
           type: LOGIN_SUCCESS,
           payload: {
@@ -37,6 +38,7 @@ export const authenticateFromToken = redirectOnFail => async (dispatch, getState
             userId,
             username,
             authenticationDate: new Date(),
+            initialSetupIsComplete,
           },
         });
       } catch (err) {
@@ -50,5 +52,17 @@ export const authenticateFromToken = redirectOnFail => async (dispatch, getState
       window.location.href = '/login';
     }
     return null;
+  }
+
+  return null;
+};
+
+
+export const redirectOnIncompleteSetup = () => async (dispatch, getState) => {
+  const state = getState();
+  const { initialSetupIsComplete } = _.get(state, 'authentication');
+
+  if (!initialSetupIsComplete) {
+    window.location.href = '/setup';
   }
 };

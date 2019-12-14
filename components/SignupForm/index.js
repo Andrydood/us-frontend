@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
+import { Mail, Lock, User } from 'react-feather';
+import Link from '~components/Link';
+import CardWithLogo from '~components/CardWithLogo';
 import request from '~lib/request';
 import { emailIsValid } from '~lib/helpers';
-
-import LocationSelector from '~components/LocationSelector/Container';
-import SkillsSelector from '~components/SkillsSelector/Container';
+import styles from './styles.scss';
 
 const SignupForm = ({
   isAuthenticated,
@@ -18,15 +18,11 @@ const SignupForm = ({
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [secondPassword, setSecondPassword] = useState('');
-  const [bio, setBio] = useState('');
-  const [locationId, setLocationId] = useState(1);
-  const [skillIds, setSkillIds] = useState([]);
 
   const [emailError, setEmailError] = useState('');
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [secondPasswordError, setSecondPasswordError] = useState('');
-  const [bioError, setBioError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleTextInput = (target) => {
@@ -46,18 +42,12 @@ const SignupForm = ({
           setUsernameError('Username is too short');
         } else if (value.length > 20) {
           setUsernameError('Username is too long');
+        } else if (!value.match(/^[a-zA-Z0-9_]*$/)) {
+          setUsernameError('Only use letters and numbers');
         } else {
           setUsernameError('');
         }
         setUsername(value);
-        break;
-      case 'bio':
-        if (value.length > 500) {
-          setBioError('Bio is too long');
-        } else {
-          setBioError('');
-        }
-        setBio(value);
         break;
       case 'password':
         if (value.length <= 5) {
@@ -86,7 +76,6 @@ const SignupForm = ({
   && !usernameError
   && !passwordError
   && !secondPasswordError
-  && !bioError
   && !!email
   && !!username
   && !!password
@@ -99,9 +88,6 @@ const SignupForm = ({
         email,
         username,
         password,
-        bio,
-        locationId,
-        skillIds,
       }).then(() => {
         window.location.href = '/login';
       }).catch(({ message }) => {
@@ -111,27 +97,38 @@ const SignupForm = ({
   };
 
   return (
-    <div>
-      <h5>
-        {errorMessage}
-      </h5>
+    <CardWithLogo>
+      <div className={styles.title}>Sign Up</div>
       <form onSubmit={submitSignUp}>
-        <input type="email" name="email" placeholder="email(required)" onChange={e => handleTextInput(e.target)} required />
-        <p>{emailError}</p>
-        <input type="text" name="username" placeholder="username(required)" onChange={e => handleTextInput(e.target)} required />
-        <p>{usernameError}</p>
-        <textarea name="bio" placeholder="bio" onChange={e => handleTextInput(e.target)} />
-        <p>{bioError}</p>
-        <input type="password" name="password" placeholder="password(required)" onChange={e => handleTextInput(e.target)} required />
-        <p>{passwordError}</p>
-        <input type="password" name="secondPassword" placeholder="password again (required)" onChange={e => handleTextInput(e.target)} required />
-        <p>{secondPasswordError}</p>
-        <LocationSelector handleSelect={setLocationId} />
-        <p>Skills</p>
-        <SkillsSelector currentSkillIds={skillIds} setSkillIds={setSkillIds} />
-        <input type="submit" />
+        <div className={styles.input}>
+          <Mail size={15} className={styles.icon} />
+          <input placeholder="Email" name="email" type="email" className={styles.field} onChange={e => handleTextInput(e.target)} />
+        </div>
+        <span className={styles.error}>{emailError}</span>
+        <div className={styles.input}>
+          <User size={15} className={styles.icon} />
+          <input placeholder="Username" name="username" type="text" className={styles.field} onChange={e => handleTextInput(e.target)} />
+        </div>
+        <span className={styles.error}>{usernameError}</span>
+        <div className={styles.input}>
+          <Lock size={15} className={styles.icon} />
+          <input placeholder="Password" name="password" type="password" className={styles.field} onChange={e => handleTextInput(e.target)} />
+        </div>
+        <span className={styles.error}>{passwordError}</span>
+        <div className={styles.input}>
+          <Lock size={15} className={styles.icon} />
+          <input placeholder="Confirm Password" name="secondPassword" type="password" className={styles.field} onChange={e => handleTextInput(e.target)} />
+        </div>
+        <span className={styles.error}>{secondPasswordError}</span>
+        <button type="submit" className={styles.submitButton}>Sign Up</button>
+        <span className={styles.mainError}>{errorMessage}</span>
       </form>
-    </div>
+      <span className={styles.logInText}>
+        Already have an account?
+        {' '}
+        <Link href="/login" className={styles.link}>Log In</Link>
+      </span>
+    </CardWithLogo>
   );
 };
 

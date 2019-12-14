@@ -20,10 +20,14 @@ const UserProfile = ({
         <div className={styles.text}>{bio}</div>
       </Fragment>
     ) : null}
-    <div className={styles.header}>Skills</div>
-    <div className={styles.skills}>
-      {skills.map(skill => <SkillBubble name={skill.name} id={skill.id} key={skill.id} />)}
-    </div>
+    {skills ? (
+      <Fragment>
+        <div className={styles.header}>Skills</div>
+        <div className={styles.skills}>
+          {skills.map(skill => <SkillBubble name={skill.name} id={skill.id} key={skill.id} />)}
+        </div>
+      </Fragment>
+    ) : null}
   </Card>
 );
 

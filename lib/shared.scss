@@ -57,3 +57,14 @@ button{
 body{
 	background: #F8F9FC;
 }
+
+:global(.geosuggest__suggests--hidden) {
+  max-height: 0;
+  overflow: hidden;
+  border-width: 0;
+}
+
+:global(.geosuggest__item--active) {
+  background: #267dc0;
+  color: #fff;
+}

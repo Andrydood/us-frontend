@@ -4839,6 +4839,11 @@ lodash.camelcase@^4.3.0:
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
 
+lodash.debounce@^4.0.6:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
+
 lodash.tail@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.tail/-/lodash.tail-4.1.1.tgz#d2333a36d9e7717c8ad2f7cacafec7c32b444664"
@@ -6591,6 +6596,14 @@ react-feather@^2.0.3:
   integrity sha512-XVjtxIyMxb2RFlqC2APoB/IZvXKDW9uLN1c264XEeZNYe8jIxjQVQpeTo3nxtHiLTgMfgf0ZYxJC6HwmY8+9BA==
   dependencies:
     prop-types "^15.7.2"
+
+react-geosuggest@^2.12.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/react-geosuggest/-/react-geosuggest-2.12.1.tgz#e74eba7e8a7aad050d1f058f138e6cbe7c56c60b"
+  integrity sha512-7Ftoyd3h2uRG79tkDZBepAiXdQ4WYq1gIsg48aLsiAqIsZf5wfENthox8flRPEzt2lWk42mbxfoAbeiSCop7nw==
+  dependencies:
+    classnames "^2.2.6"
+    lodash.debounce "^4.0.6"
 
 react-is@16.8.6:
   version "16.8.6"
