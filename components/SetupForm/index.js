@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import CardWithLogo from '~components/CardWithLogo';
+import Card from '~components/Card';
 import LocationSelector from '~components/LocationSelector';
 import SkillsSelector from '~components/SkillsSelector/Container';
 import styles from './styles.scss';
@@ -36,7 +36,7 @@ const SetupForm = ({
   };
 
   return (
-    <CardWithLogo>
+    <Card>
       <div className={styles.title}>Welcome! Tell us more about yourself!</div>
       <form onSubmit={submitSetup}>
         <div className={styles.input}>
@@ -55,7 +55,7 @@ const SetupForm = ({
         <button type="submit" className={styles.submitButton}>Continue</button>
         <span className={styles.mainError}>{errorMessage}</span>
       </form>
-    </CardWithLogo>
+    </Card>
   );
 };
 

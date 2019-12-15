@@ -54,8 +54,15 @@ button{
 	border: none;
 }
 
+button, a{
+	&:focus{
+		outline: none;
+	}
+}
+
 body{
 	background: #F8F9FC;
+	overflow: hidden;
 }
 
 :global(.geosuggest__suggests--hidden) {

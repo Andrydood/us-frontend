@@ -1,7 +1,5 @@
-const Error = () => (
-  <div>
-    <h2>404 Not Found</h2>
-  </div>
-);
+import ErrorPage from '~components/ErrorPage';
+
+const Error = () => (<ErrorPage />);
 
 export default Error;
