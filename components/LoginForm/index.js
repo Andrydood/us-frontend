@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Mail, Lock } from 'react-feather';
 import CardWithLogo from '~components/CardWithLogo';
@@ -7,11 +6,7 @@ import styles from './styles.scss';
 
 import { authenticateFromInput } from '~lib/authentication';
 
-const LoginForm = ({ isAuthenticated }) => {
-  if (isAuthenticated) {
-    window.location.href = '/browse';
-  }
-
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -44,14 +39,6 @@ const LoginForm = ({ isAuthenticated }) => {
       </span>
     </CardWithLogo>
   );
-};
-
-LoginForm.propTypes = {
-  isAuthenticated: PropTypes.bool,
-};
-
-LoginForm.defaultProps = {
-  isAuthenticated: false,
 };
 
 export default LoginForm;

@@ -102,9 +102,9 @@ const NewProjectForm = ({ createProject }) => {
         <p>{inspiredByError}</p>
         <textarea name="assets" placeholder="Assets" onChange={e => handleTextInput(e.target)} />
         <p>{assetsError}</p>
-        <p>Skills (select at least one)</p>
-        <SkillsSelector currentSkillIds={skillIds} setSkillIds={setSkillIds} />
         <LocationSelector handleSelect={setLocation} />
+        <p>Skills (select at least one)</p>
+        <SkillsSelector onSkillsChange={skills => setSkillIds(skills.map(skill => skill.id))} />
         <input type="submit" />
       </form>
     </div>

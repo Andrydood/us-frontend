@@ -49,7 +49,7 @@ export const toggleFavoriteProject = projectId => async (dispatch, getState) => 
     try {
       dispatch({ type: IS_FAVORITE_REQUEST });
 
-      let newLikes = likes;
+      let newLikes = parseInt(likes, 10);
 
       if (isFavorite) {
         await request.unFavoriteProject(projectId, token);

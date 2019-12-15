@@ -32,6 +32,10 @@
 .link{
   stroke: #6E6E6E;
   margin-right: 7px;
+  cursor: pointer;
+  &:focus{
+    outline: none;
+  }
 }
 
 .likes{

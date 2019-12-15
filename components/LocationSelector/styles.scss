@@ -1,0 +1,35 @@
+.inputClass{
+  width: 100%;
+  font-size: 16px;
+  background: #f1f1f1;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  &:focus{
+    outline: none;
+  }
+}
+
+.geosuggest{
+  position: relative;
+}
+
+.suggestsClass{
+  position: absolute;
+  background: #ffffff;
+  width: 100%;
+}
+
+.suggestItem{
+  padding: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  &:hover{
+    background-color: #f0f4ff;
+  }
+}
+
+.suggestItemActiveClass{
+  background-color: #f0f4ff;
+  color: #000000;
+}

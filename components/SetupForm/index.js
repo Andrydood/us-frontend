@@ -40,16 +40,17 @@ const SetupForm = ({
       <div className={styles.title}>Welcome! Tell us more about yourself!</div>
       <form onSubmit={submitSetup}>
         <div className={styles.input}>
-          <p>Bio</p>
-          <input placeholder="Bio" type="text" className={styles.field} onChange={e => handleBioInput(e.target)} />
+          <p>Describe Yourself</p>
+          <textarea placeholder="Your Bio" type="text" maxLength="150" className={styles.bioTextArea} onChange={e => handleBioInput(e.target)} />
         </div>
+        <span className={styles.error}>{bioError}</span>
         <div className={styles.input}>
-          <p>Location</p>
+          <p>Your Location</p>
           <LocationSelector handleSelect={setLocation} />
         </div>
         <div className={styles.input}>
-          <p>Skills</p>
-          <SkillsSelector currentSkillIds={skillIds} setSkillIds={setSkillIds} />
+          <p>What are your skills?</p>
+          <SkillsSelector onSkillsChange={skills => setSkillIds(skills.map(skill => skill.id))} />
         </div>
         <button type="submit" className={styles.submitButton}>Continue</button>
         <span className={styles.mainError}>{errorMessage}</span>
