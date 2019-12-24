@@ -13,6 +13,9 @@ import favoritesPage from '~store/favoritesPage/reducer';
 import profilePage from '~store/profilePage/reducer';
 import projectPage from '~store/projectPage/reducer';
 import navigation from '~store/navigation/reducer';
+import socketIo from '~store/socketIo/reducer';
+import chatPage from '~store/chatPage/reducer';
+import messagesPage from '~store/messagesPage/reducer';
 
 const reducers = combineReducers({
   authentication,
@@ -22,6 +25,9 @@ const reducers = combineReducers({
   profilePage,
   projectPage,
   navigation,
+  socketIo,
+  chatPage,
+  messagesPage,
 });
 
 const makeStore = initialState => createStore(

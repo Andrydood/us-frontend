@@ -32,6 +32,9 @@ const Header = ({ onClickLogout, currentPage }) => {
     case pageTypes.project:
       pageTitle = 'Project';
       break;
+    case pageTypes.messages:
+      pageTitle = 'Messages';
+      break;
     default:
   }
 

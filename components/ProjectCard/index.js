@@ -6,7 +6,7 @@ import Link from '~components/Link/Container';
 import SkillBubble from '~components/SkillBubble';
 import Card from '~components/Card';
 import pageTypes from '~lib/pageTypes';
-import { skillShape } from '~lib/shapes';
+import { skillShape, locationShape } from '~lib/shapes';
 import { timeFromCreation } from '~lib/helpers';
 import styles from './styles.scss';
 
@@ -44,7 +44,7 @@ ProjectCard.propTypes = {
   owner: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
-  location: PropTypes.string,
+  location: locationShape,
   neededSkills: PropTypes.arrayOf(skillShape),
   createdAt: PropTypes.string.isRequired,
   likes: PropTypes.string,

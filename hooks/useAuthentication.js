@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticateFromToken, redirectOnIncompleteSetup } from '~store/authentication/actions';
+import { initConnection } from '~store/socketIo/actions';
 
 const useAuthentication = (settings = {}) => {
   const { redirectOnFail = false, redirectToSetup = true } = settings;
@@ -12,8 +13,11 @@ const useAuthentication = (settings = {}) => {
   }, []);
 
   useEffect(() => {
-    if (isAuthenticated && redirectToSetup) {
-      dispatch(redirectOnIncompleteSetup());
+    if (isAuthenticated) {
+      dispatch(initConnection());
+      if (redirectToSetup) {
+        dispatch(redirectOnIncompleteSetup());
+      }
     }
   }, [isAuthenticated]);
 };

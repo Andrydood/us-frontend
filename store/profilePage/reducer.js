@@ -16,8 +16,8 @@ const initialState = {
     skills: [],
   },
   projects: [],
-  isFetchingProjects: false,
-  isFetchinUserData: false,
+  isFetchingProjects: true,
+  isFetchingUserData: true,
 };
 
 const reducer = createReducer(initialState, {
@@ -35,7 +35,7 @@ const reducer = createReducer(initialState, {
       location: null,
       skills: [],
     },
-    isFetchinUserData: true,
+    isFetchingUserData: true,
   }),
   [SET_USER_PROJECTS]: (state, { payload }) => ({
     ...state,
@@ -51,7 +51,7 @@ const reducer = createReducer(initialState, {
       location: payload.userData.location.label,
       skills: payload.userData.skills,
     },
-    isFetchinUserData: false,
+    isFetchingUserData: false,
   }),
 });
 

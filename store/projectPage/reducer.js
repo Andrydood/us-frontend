@@ -18,9 +18,9 @@ const initialState = {
   location: null,
   neededSkills: [],
   createdAt: null,
-  isFetching: false,
+  isFetching: true,
   isFavorite: false,
-  isFetchingIsFavorite: false,
+  isFetchingIsFavorite: true,
   isOwner: false,
   likes: null,
 };

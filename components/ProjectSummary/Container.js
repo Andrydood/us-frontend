@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import ProjectSummary from '~components/ProjectSummary';
-import { toggleFavoriteProject, deleteProject } from '~store/projectPage/actions';
+import { toggleFavoriteProject, deleteProject, goToConversation } from '~store/projectPage/actions';
 
 const mapStateToProps = state => ({
   owner: state.projectPage.owner,
@@ -16,7 +16,8 @@ const mapStateToProps = state => ({
   isOwner: state.projectPage.isOwner,
   likes: state.projectPage.likes,
   createdAt: state.projectPage.createdAt,
+  isFetching: state.projectPage.isFetching,
 });
-const mapDispatchToProps = { toggleFavoriteProject, deleteProject };
+const mapDispatchToProps = { toggleFavoriteProject, deleteProject, goToConversation };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectSummary);

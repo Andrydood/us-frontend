@@ -7,6 +7,21 @@ import {
 } from '~store/projectPage/actionTypes';
 import request from '~lib/request';
 
+export const goToConversation = projectId => async (dispatch, getState) => {
+  const state = getState();
+  const { token } = _.get(state, 'authentication');
+
+  try {
+    const { conversationId } = await request.createConversation(projectId, token);
+    if (conversationId) {
+      window.location.href = `/chat/${conversationId}`;
+    }
+  } catch (err) {
+    console.log('Error: ', err);
+    window.location.href = '/404';
+  }
+};
+
 export const getProjectData = projectId => async (dispatch, getState) => {
   const state = getState();
   const { token, username } = _.get(state, 'authentication');
@@ -49,7 +64,7 @@ export const toggleFavoriteProject = projectId => async (dispatch, getState) => 
     try {
       dispatch({ type: IS_FAVORITE_REQUEST });
 
-      let newLikes = parseInt(likes, 10);
+      let newLikes = likes ? parseInt(likes, 10) : 0;
 
       if (isFavorite) {
         await request.unFavoriteProject(projectId, token);

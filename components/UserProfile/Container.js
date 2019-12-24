@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   bio: state.profilePage.userData.bio,
   location: state.profilePage.userData.location,
   skills: state.profilePage.userData.skills,
+  isFetchingUserData: state.profilePage.isFetchingUserData,
 });
 const mapDispatchToProps = {};
 
