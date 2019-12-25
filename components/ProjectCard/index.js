@@ -33,6 +33,7 @@ const ProjectCard = ({
       <span className={styles.secondLine}>
         <span>{`${owner} · ${location ? location.label : null} · ${timeFromCreation(createdAt)}`}</span>
       </span>
+      <p className={styles.lookingFor}>Looking for help with:</p>
       <span>
         {neededSkills.map(skill => <SkillBubble name={skill.name} id={skill.id} key={skill.id} />)}
       </span>

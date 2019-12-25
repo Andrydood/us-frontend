@@ -1,34 +1,54 @@
 import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Link from '~components/Link/Container';
+import ChatMessageList from '~components/ChatMessageList';
 import pageTypes from '~lib/pageTypes';
+import styles from './styles.scss';
 
-const Conversation = ({ sendMessage, messages, conversationDetails }) => {
+const Conversation = ({
+  sendMessage,
+  messages,
+  conversationDetails,
+  username,
+}) => {
   const [message, setMessage] = useState('');
   const textInput = useRef(null);
+  const messageList = useRef(null);
+  const otherUser = conversationDetails.isOwner
+    ? conversationDetails.interestedUser
+    : conversationDetails.projectOwner;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendMessage(message.trim());
-    setMessage('');
-    textInput.current.value = '';
+    const trimmedMessage = message.trim();
+    if (trimmedMessage) {
+      sendMessage(trimmedMessage);
+      setMessage('');
+      textInput.current.value = '';
+    }
   };
 
   return (
     <div>
-      <h1>Project:</h1>
-      <Link href="/project/[id]" as={`/project/${conversationDetails.projectId}`} pageType={pageTypes.project}>
-        <h2>{JSON.stringify(conversationDetails)}</h2>
-      </Link>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {messages.map((m, idx) => {
-            const key = `message-${idx}`;
-            return <li key={key}>{m.content}</li>;
-          })}
-        </ul>
-        <input type="text" onChange={e => setMessage(e.target.value)} ref={textInput} />
-        <button type="submit">Send</button>
+      <div className={styles.projectBanner}>
+        <Link className={styles.link} href="/user/[username]" as={`/user/${otherUser}`} pageType={pageTypes.profile}>
+          <span className={styles.userLink}>{otherUser}</span>
+        </Link>
+        <Link className={styles.link} href="/project/[id]" as={`/project/${conversationDetails.projectId}`} pageType={pageTypes.project}>
+          <span className={styles.projectLink}>{conversationDetails.projectName}</span>
+        </Link>
+      </div>
+      <ul className={styles.messages} ref={messageList}>
+        <ChatMessageList messages={messages} username={username} />
+      </ul>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input
+          className={styles.textInput}
+          type="text"
+          onChange={e => setMessage(e.target.value)}
+          ref={textInput}
+          placeholder="Type a message..."
+        />
       </form>
     </div>
   );
@@ -48,11 +68,13 @@ Conversation.propTypes = {
     content: PropTypes.string,
     created_at: PropTypes.string,
   })),
+  username: PropTypes.string,
 };
 
 Conversation.defaultProps = {
   conversationDetails: {},
   messages: [],
+  username: null,
   sendMessage: () => {},
 };
 

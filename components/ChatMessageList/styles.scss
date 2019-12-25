@@ -1,0 +1,35 @@
+
+.messages{
+  overflow: scroll;
+  height: calc(100vh - 200px);
+}
+
+.message{
+  display: inline;
+  margin: 5px 10px;
+  display: block;
+}
+
+.messageInfo{
+  color: #6E6E6E;
+  font-size: 10px;
+  display: block;
+  margin: 3px 0 18px;
+}
+
+.messageBubble{
+  background: #ffffff;
+  padding: 7px 15px;
+  border-radius: 30px;
+  display: inline-block;
+  max-width: 80%;
+  font-size: 14px;
+}
+
+.ownMessage{
+  text-align: right;
+  .messageBubble{
+    background: #356f9c;
+    color: white;
+  }
+}

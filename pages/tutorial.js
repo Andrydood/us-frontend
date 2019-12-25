@@ -1,7 +1,7 @@
 import NavigationWrapper from '~components/NavigationWrapper';
 import useAuthentication from '~hooks/useAuthentication';
 
-const Help = () => {
+const Tutorial = () => {
   useAuthentication({ redirectOnFail: true });
 
   return (
@@ -11,4 +11,4 @@ const Help = () => {
   );
 };
 
-export default Help;
+export default Tutorial;

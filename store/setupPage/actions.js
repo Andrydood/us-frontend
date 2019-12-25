@@ -22,7 +22,7 @@ export const setupAccount = ({
       saveToken(newToken);
       dispatch({ type: COMPLETE_INITIAL_SETUP });
       console.log({ newToken });
-      window.location.href = '/browse';
+      window.location.href = '/tutorial';
     }).catch((err) => {
       console.log('Error: ', err);
     });

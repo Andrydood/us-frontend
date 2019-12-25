@@ -1,0 +1,45 @@
+.projectBanner{
+  padding: 10px;
+  background: #ffffff;
+  border-bottom: 1px solid #d8d8d8;
+  display: flow-root;
+}
+
+.link{
+  text-decoration: none;
+}
+
+.projectLink{
+  font-size: 14px;
+  display: inline;
+  float: right;
+}
+
+.userLink{
+  font-size: 16px;
+  font-weight: 600;
+  display: inline;
+}
+
+.projectLink, .userLink{
+  line-height: 20px;
+  color: #292929;
+  max-width: 50vw;
+}
+
+.form{
+  position: fixed;
+  bottom: 51px;
+  width: 100vw;
+}
+
+.textInput{
+  width: 100vw;
+  padding: 4px 10px;
+  border: 0;
+  height: 25px;
+  border-top: 1px solid #f1f1f1;
+  &:focus{
+    outline: none;
+  }
+}
