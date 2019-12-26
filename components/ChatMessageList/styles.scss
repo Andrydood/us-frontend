@@ -1,7 +1,10 @@
-
 .messages{
+  position: absolute;
+  top: 110px;
+  left: 0;
+  right: 0;
+  bottom: 85px;
   overflow: scroll;
-  height: calc(100vh - 200px);
 }
 
 .message{

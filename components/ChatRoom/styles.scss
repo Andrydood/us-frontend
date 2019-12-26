@@ -35,10 +35,11 @@
 
 .textInput{
   width: 100vw;
-  padding: 4px 10px;
+  padding: 7px 10px;
   border: 0;
   height: 25px;
   border-top: 1px solid #f1f1f1;
+  -webkit-appearance: none;
   &:focus{
     outline: none;
   }

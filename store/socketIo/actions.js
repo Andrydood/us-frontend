@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import { SET_WEBSOCKET, SET_CONNECTED } from '~store/socketIo/actionTypes';
 
 export const initConnection = () => (dispatch) => {
-  const socketIoClient = io('ws://localhost:4000', {
+  const socketIoClient = io('ws://192.168.1.243:4000', {
     reconnection: true,
     reconnectionDelay: 1000,
     reconnectionDelayMax: 5000,

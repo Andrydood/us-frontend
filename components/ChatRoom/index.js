@@ -13,7 +13,6 @@ const Conversation = ({
 }) => {
   const [message, setMessage] = useState('');
   const textInput = useRef(null);
-  const messageList = useRef(null);
   const otherUser = conversationDetails.isOwner
     ? conversationDetails.interestedUser
     : conversationDetails.projectOwner;
@@ -38,9 +37,7 @@ const Conversation = ({
           <span className={styles.projectLink}>{conversationDetails.projectName}</span>
         </Link>
       </div>
-      <ul className={styles.messages} ref={messageList}>
-        <ChatMessageList messages={messages} username={username} />
-      </ul>
+      <ChatMessageList messages={messages} username={username} />
       <form onSubmit={handleSubmit} className={styles.form}>
         <input
           className={styles.textInput}

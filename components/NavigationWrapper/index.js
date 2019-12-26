@@ -6,7 +6,9 @@ import styles from './styles.scss';
 const NavigationWrapper = ({ children }) => (
   <div className={styles.page}>
     <Header />
-    { children }
+    <div className={styles.container}>
+      { children }
+    </div>
     <NavBar />
   </div>
 );
