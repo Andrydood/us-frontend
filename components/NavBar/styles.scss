@@ -35,3 +35,19 @@
   color: #000000;
   overflow: hidden;
 }
+
+.unreadBubble{
+  background: #d83939;
+  border-radius: 100%;
+  height: 16px;
+  width: 16px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  position: relative;
+  float: right;
+  margin-left: -16px;
+  left: calc(-50% + 18px);
+  top: -2px;
+}

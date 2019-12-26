@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Link from '~components/Link/Container';
 import ChatMessageList from '~components/ChatMessageList';
 import pageTypes from '~lib/pageTypes';
+import { messageShape } from '~lib/shapes';
 import styles from './styles.scss';
 
 const Conversation = ({
@@ -60,11 +61,7 @@ Conversation.propTypes = {
     isOwner: PropTypes.bool,
   }),
   sendMessage: PropTypes.func,
-  messages: PropTypes.arrayOf(PropTypes.shape({
-    username: PropTypes.string,
-    content: PropTypes.string,
-    created_at: PropTypes.string,
-  })),
+  messages: PropTypes.arrayOf(messageShape),
   username: PropTypes.string,
 };
 

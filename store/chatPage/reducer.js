@@ -1,11 +1,18 @@
 import { createReducer } from '~lib/redux';
 
-import { SET_NEW_MESSAGE, SET_MESSAGES, DATA_REQUEST, SET_PROJECT_DETAILS } from '~store/chatPage/actionTypes';
+import {
+  SET_NEW_MESSAGE,
+  SET_MESSAGES,
+  DATA_REQUEST,
+  SET_PROJECT_DETAILS,
+  SET_SOCKET_IO_CALLBACK,
+} from '~store/chatPage/actionTypes';
 
 const initialState = {
   messages: [],
   conversationDetails: {},
   isFetching: false,
+  socketIoCallback: null,
 };
 
 const reducer = createReducer(initialState, {
@@ -28,6 +35,10 @@ const reducer = createReducer(initialState, {
   [SET_NEW_MESSAGE]: (state, { payload }) => ({
     ...state,
     messages: [...state.messages, payload.message],
+  }),
+  [SET_SOCKET_IO_CALLBACK]: (state, { payload }) => ({
+    ...state,
+    socketIoCallback: payload.socketIoCallback,
   }),
 });
 

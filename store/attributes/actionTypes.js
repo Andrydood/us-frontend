@@ -1,1 +1,1 @@
-export const SET_ATTRIBUTES = 'SET_ATTRIBUTES';
+export const SET_ATTRIBUTES = 'SET_ATTRIBUTES_attributes';

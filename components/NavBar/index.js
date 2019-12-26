@@ -11,7 +11,7 @@ import Link from '~components/Link/Container';
 import styles from './styles.scss';
 import pageTypes from '~lib/pageTypes';
 
-const NavBar = ({ username, currentPage }) => (
+const NavBar = ({ username, currentPage, unreadMessages }) => (
   <div className={styles.navBar}>
     <Link href="/browse" pageType={pageTypes.browse} className={styles.link}>
       <Home
@@ -46,6 +46,9 @@ const NavBar = ({ username, currentPage }) => (
       />
     </Link>
     <Link href="/messages" pageType={pageTypes.messages} className={styles.link}>
+      {(unreadMessages && unreadMessages > 0)
+        ? <div className={styles.unreadBubble}>{unreadMessages < 10 ? unreadMessages : null}</div>
+        : null}
       <Mail
         size={26}
         className={
@@ -59,11 +62,13 @@ const NavBar = ({ username, currentPage }) => (
 NavBar.propTypes = {
   username: PropTypes.string,
   currentPage: PropTypes.string,
+  unreadMessages: PropTypes.number,
 };
 
 NavBar.defaultProps = {
   username: '',
   currentPage: null,
+  unreadMessages: 0,
 };
 
 export default NavBar;

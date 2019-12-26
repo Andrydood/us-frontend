@@ -8,7 +8,6 @@ import useData from '~hooks/useData';
 import Chatroom from '~components/ChatRoom/Container';
 import pageTypes from '~lib/pageTypes';
 
-
 const Conversation = () => {
   const router = useRouter();
   const { conversationId } = router.query;

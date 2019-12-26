@@ -7,7 +7,6 @@ const useAuthentication = (settings = {}) => {
   const { redirectOnFail = false, redirectToSetup = true } = settings;
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(state => state.authentication.isAuthenticated);
-
   useEffect(() => {
     dispatch(authenticateFromToken(redirectOnFail));
   }, []);

@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { getTime } from '~lib/helpers';
+import { messageShape } from '~lib/shapes';
 import styles from './styles.scss';
 
 const ChatMessageList = ({
@@ -14,7 +15,7 @@ const ChatMessageList = ({
     messageList.current.scrollTop = messageList.current.scrollHeight;
   };
 
-  const createMessageInfo = m => `${m.username}\u00A0\u00A0\u00A0${getTime(m.created_at)}`;
+  const createMessageInfo = m => `${m.username}\u00A0\u00A0\u00A0${getTime(m.createdAt)}`;
 
   useEffect(() => {
     updateScroll();
@@ -52,11 +53,7 @@ const ChatMessageList = ({
 };
 
 ChatMessageList.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.shape({
-    username: PropTypes.string,
-    content: PropTypes.string,
-    created_at: PropTypes.string,
-  })),
+  messages: PropTypes.arrayOf(messageShape),
   username: PropTypes.string,
 };
 

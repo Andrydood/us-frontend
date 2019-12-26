@@ -24,7 +24,7 @@ const MessagesList = ({ incomingConversations, outwardConversations, isFetching 
         : null
     }
       {outwardConversations.map(conversation => (
-        <ConversationCard conversation={conversation} />
+        <ConversationCard key={conversation.id} conversation={conversation} />
       ))}
     </div>
   </LoadingWrapper>

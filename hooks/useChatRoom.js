@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { joinChatRoom } from '~store/chatPage/actions';
+import { joinChatRoom, leaveChatRoom } from '~store/chatPage/actions';
 
-const useAuthentication = (conversationId) => {
+const useChatRoom = (conversationId) => {
   const dispatch = useDispatch();
   const connected = useSelector(state => state.socketIo.connected);
 
@@ -10,7 +10,8 @@ const useAuthentication = (conversationId) => {
     if (connected) {
       dispatch(joinChatRoom(conversationId));
     }
+    return () => dispatch(leaveChatRoom());
   }, [connected]);
 };
 
-export default useAuthentication;
+export default useChatRoom;

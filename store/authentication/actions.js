@@ -15,7 +15,6 @@ export const logOut = () => (dispatch) => {
   window.location.href = '/login';
 };
 
-
 export const authenticateFromToken = redirectOnFail => async (dispatch, getState) => {
   const state = getState();
   const { isAuthenticated, authenticationDate, token: oldToken } = _.get(state, 'authentication');
