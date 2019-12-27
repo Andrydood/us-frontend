@@ -5,8 +5,9 @@ import {
   SET_PROJECT_DETAILS,
   DATA_REQUEST,
   SET_SOCKET_IO_CALLBACK,
+  SET_CONVERSATION_ID,
 } from '~store/chatPage/actionTypes';
-import { updateMessages } from '~store/messagesPage/actions';
+import { removeUnreadMessages } from '~store/messagesPage/actions';
 import request from '~lib/request';
 
 const markAsRead = (messages, conversationId) => (dispatch, getState) => {
@@ -19,10 +20,6 @@ const markAsRead = (messages, conversationId) => (dispatch, getState) => {
       socketIoClient.emit('markAsRead', { messageId: message.id, token, conversationId });
     }
   });
-
-  setTimeout(() => {
-    dispatch(updateMessages());
-  }, 1000);
 };
 
 export const getMessages = conversationId => (dispatch, getState) => {
@@ -38,6 +35,7 @@ export const getMessages = conversationId => (dispatch, getState) => {
         payload: { conversationDetails: data.conversationDetails },
       });
       dispatch(markAsRead(data.messages, conversationId));
+      dispatch(removeUnreadMessages(conversationId));
     }).catch((err) => {
       console.log('Error: ', err);
       window.location.href = '/404';
@@ -72,6 +70,7 @@ export const joinChatRoom = conversationId => (dispatch, getState) => {
   socketIoClient.on('broadcastMessage', socketIoCallback);
 
   dispatch({ type: SET_SOCKET_IO_CALLBACK, payload: { socketIoCallback } });
+  dispatch({ type: SET_CONVERSATION_ID, payload: { conversationId } });
 };
 
 export const leaveChatRoom = () => (dispatch, getState) => {
@@ -81,5 +80,6 @@ export const leaveChatRoom = () => (dispatch, getState) => {
   if (socketIoClient) {
     socketIoClient.emit('leaveChatRoom');
     socketIoClient.off('broadcastMessage', socketIoCallback);
+    dispatch({ type: SET_CONVERSATION_ID, payload: { conversationId: null } });
   }
 };

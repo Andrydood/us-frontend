@@ -4,9 +4,9 @@ import NavBar from '~components/NavBar/Container';
 import useMessages from '~hooks/useMessages';
 import styles from './styles.scss';
 
-const NavigationWrapper = ({ children, allowUseMessages }) => {
+const NavigationWrapper = ({ children, allowUseMessages, prefetchMessagesData }) => {
   if (allowUseMessages) {
-    useMessages();
+    useMessages({ prefetchMessagesData });
   }
 
   return (
@@ -26,10 +26,12 @@ NavigationWrapper.propTypes = {
     PropTypes.node,
   ]).isRequired,
   allowUseMessages: PropTypes.bool,
+  prefetchMessagesData: PropTypes.bool,
 };
 
 NavigationWrapper.defaultProps = {
   allowUseMessages: true,
+  prefetchMessagesData: true,
 };
 
 export default NavigationWrapper;

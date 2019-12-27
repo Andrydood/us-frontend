@@ -20,7 +20,7 @@ const Conversation = () => {
   });
 
   return (
-    <NavigationWrapper>
+    <NavigationWrapper prefetchMessagesData={false}>
       <Chatroom />
     </NavigationWrapper>
   );

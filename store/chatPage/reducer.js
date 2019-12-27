@@ -6,6 +6,7 @@ import {
   DATA_REQUEST,
   SET_PROJECT_DETAILS,
   SET_SOCKET_IO_CALLBACK,
+  SET_CONVERSATION_ID,
 } from '~store/chatPage/actionTypes';
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   conversationDetails: {},
   isFetching: false,
   socketIoCallback: null,
+  conversationId: null,
 };
 
 const reducer = createReducer(initialState, {
@@ -39,6 +41,10 @@ const reducer = createReducer(initialState, {
   [SET_SOCKET_IO_CALLBACK]: (state, { payload }) => ({
     ...state,
     socketIoCallback: payload.socketIoCallback,
+  }),
+  [SET_CONVERSATION_ID]: (state, { payload }) => ({
+    ...state,
+    conversationId: payload.conversationId,
   }),
 });
 

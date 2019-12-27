@@ -16,7 +16,7 @@ const MessagesList = ({ incomingConversations, outwardConversations, isFetching 
         : null
     }
       {incomingConversations.map(conversation => (
-        <ConversationCard conversation={conversation} />
+        <ConversationCard key={conversation.id} conversation={conversation} />
       ))}
       {outwardConversations.length > 0
         ? <h1 className={styles.header}>Conversations about other projects:</h1>

@@ -7,6 +7,30 @@ import {
 } from '~store/messagesPage/actionTypes';
 import request from '~lib/request';
 
+const addUnreadToConversationList = (conversationList, conversationId) => conversationList.map(
+  (conversation) => {
+    if (conversation.id === conversationId) {
+      return {
+        ...conversation,
+        unread: conversation.unread ? conversation.unread + 1 : 1,
+      };
+    }
+    return conversation;
+  },
+);
+
+const removeUnreadFromConversationList = (conversationList, conversationId) => conversationList.map(
+  (conversation) => {
+    if (conversation.id === conversationId) {
+      return {
+        ...conversation,
+        unread: 0,
+      };
+    }
+    return conversation;
+  },
+);
+
 const updateUnreadMessages = () => (dispatch, getState) => {
   const state = getState();
   const { incomingConversations, outwardConversations } = _.get(state, 'messagesPage');
@@ -23,15 +47,68 @@ const updateUnreadMessages = () => (dispatch, getState) => {
   dispatch({ type: SET_UNREAD_MESSAGES, payload: { unreadMessages } });
 };
 
-export const updateMessages = () => async (dispatch, getState) => {
+const addUnreadMessage = conversationId => (dispatch, getState) => {
+  const state = getState();
+  const { incomingConversations, outwardConversations } = _.get(state, 'messagesPage');
+
+  const newIncomingConversations = addUnreadToConversationList(
+    incomingConversations,
+    conversationId,
+  );
+  const newOutwardConversations = addUnreadToConversationList(
+    outwardConversations,
+    conversationId,
+  );
+
+  dispatch({
+    type: SET_MESSAGES,
+    payload: {
+      incomingConversations: newIncomingConversations,
+      outwardConversations: newOutwardConversations,
+    },
+  });
+  dispatch(updateUnreadMessages());
+};
+
+export const removeUnreadMessages = conversationId => (dispatch, getState) => {
+  const state = getState();
+  const { incomingConversations, outwardConversations } = _.get(state, 'messagesPage');
+
+  const newIncomingConversations = removeUnreadFromConversationList(
+    incomingConversations,
+    conversationId,
+  );
+  const newOutwardConversations = removeUnreadFromConversationList(
+    outwardConversations,
+    conversationId,
+  );
+
+  dispatch({
+    type: SET_MESSAGES,
+    payload: {
+      incomingConversations: newIncomingConversations,
+      outwardConversations: newOutwardConversations,
+    },
+  });
+  dispatch(updateUnreadMessages());
+};
+
+export const getMessages = () => async (dispatch, getState) => {
   const state = getState();
   const { token } = _.get(state, 'authentication');
 
   if (token) {
+    dispatch({ type: DATA_REQUEST });
     try {
       const incomingConversations = await request.conversationsForMyProjects(token);
       const outwardConversations = await request.conversationsForOtherProjects(token);
-      dispatch({ type: SET_MESSAGES, payload: { incomingConversations, outwardConversations } });
+      dispatch({
+        type: SET_MESSAGES,
+        payload: {
+          incomingConversations: incomingConversations.map(conv => ({ ...conv, unread: parseInt(conv.unread, 10) })),
+          outwardConversations: outwardConversations.map(conv => ({ ...conv, unread: parseInt(conv.unread, 10) })),
+        },
+      });
       dispatch(updateUnreadMessages());
     } catch (err) {
       console.log(err);
@@ -40,17 +117,14 @@ export const updateMessages = () => async (dispatch, getState) => {
   }
 };
 
-export const getMessages = () => async (dispatch) => {
-  dispatch({ type: DATA_REQUEST });
-  dispatch(updateMessages());
-};
-
-
 export const receiveNewMessages = () => async (dispatch, getState) => {
   const { socketIoClient } = _.get(getState(), 'socketIo');
 
-  const socketIoCallback = () => {
-    dispatch(getMessages());
+  const socketIoCallback = ({ conversationId: messageConversationId }) => {
+    const { conversationId: currentConversationId } = _.get(getState(), 'chatPage');
+    if ((!currentConversationId || (currentConversationId !== messageConversationId))) {
+      dispatch(addUnreadMessage(messageConversationId));
+    }
   };
 
   socketIoClient.on('broadcastMessage', socketIoCallback);
