@@ -37,11 +37,11 @@ const updateUnreadMessages = () => (dispatch, getState) => {
 
   let unreadMessages = 0;
   incomingConversations.forEach((message) => {
-    unreadMessages = parseInt(unreadMessages, 10) + message.unread;
+    unreadMessages = parseInt(unreadMessages, 10) + (message.unread || 0);
   });
 
   outwardConversations.forEach((message) => {
-    unreadMessages = parseInt(unreadMessages, 10) + message.unread;
+    unreadMessages = parseInt(unreadMessages, 10) + (message.unread || 0);
   });
 
   dispatch({ type: SET_UNREAD_MESSAGES, payload: { unreadMessages } });

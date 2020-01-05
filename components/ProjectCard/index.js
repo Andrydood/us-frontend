@@ -35,7 +35,9 @@ const ProjectCard = ({
       </span>
       <p className={styles.lookingFor}>Looking for help with:</p>
       <span>
-        {neededSkills.map(skill => <SkillBubble name={skill.name} id={skill.id} key={skill.id} />)}
+        {neededSkills
+          ? neededSkills.map(skill => <SkillBubble name={skill.name} id={skill.id} key={skill.id} />)
+          : null}
       </span>
     </Card>
   </Link>

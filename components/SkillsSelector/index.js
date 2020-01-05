@@ -11,8 +11,9 @@ const getSuggestions = (skills, value) => {
   const inputLength = inputValue.length;
 
   return inputLength === 0
-    ? []
+    ? skills
     : skills.filter(skill => skill.name.toLowerCase().slice(0, inputLength) === inputValue);
+    //change this to be anywhere in the phrase
 };
 
 const getSuggestionValue = suggestion => suggestion.name;
@@ -81,6 +82,7 @@ const SkillsSelector = ({ skills, onSkillsChange }) => {
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
         onSuggestionSelected={onSuggestionSelected}
+        shouldRenderSuggestions={() => true}
         theme={styles}
         highlightFirstSuggestion
       />

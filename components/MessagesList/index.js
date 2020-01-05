@@ -12,14 +12,14 @@ const MessagesList = ({ incomingConversations, outwardConversations, isFetching 
         : null
     }
       {incomingConversations.length > 0
-        ? <h1 className={styles.header}>Conversations about your projects:</h1>
+        ? <h1 className={styles.header}>Your Projects:</h1>
         : null
     }
       {incomingConversations.map(conversation => (
         <ConversationCard key={conversation.id} conversation={conversation} />
       ))}
       {outwardConversations.length > 0
-        ? <h1 className={styles.header}>Conversations about other projects:</h1>
+        ? <h1 className={styles.header}>Other Projects:</h1>
 
         : null
     }
