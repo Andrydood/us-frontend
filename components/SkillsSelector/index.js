@@ -9,11 +9,11 @@ import styles from './styles.scss';
 const getSuggestions = (skills, value) => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
+  const regex = new RegExp(inputValue, 'g');
 
   return inputLength === 0
     ? skills
-    : skills.filter(skill => skill.name.toLowerCase().slice(0, inputLength) === inputValue);
-    //change this to be anywhere in the phrase
+    : skills.filter(skill => skill.name.toLowerCase().match(regex));
 };
 
 const getSuggestionValue = suggestion => suggestion.name;
